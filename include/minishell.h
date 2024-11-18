@@ -14,6 +14,7 @@
 // libft header file 
 # include "../libft/libft.h"
 
-
+// test.c
+int ft_test_libft(const char *str);
 
 #endif

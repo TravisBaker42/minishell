@@ -36,8 +36,10 @@ void	test_prompt_loop(void)
 ///
 /// @todo lots of stuff need to add libft to the make file 
 /// are command line vars required does it require env path || just use getenv("PATH")
+/// Need to remove printf used for libft testing <------------------------------------------
 int	main(void)
 {
+    printf("libft atoi test =  %d\n", ft_test_libft("42"));//<------------------remove
 	test_prompt_loop();
 	return (0);
 }

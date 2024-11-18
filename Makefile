@@ -1,15 +1,20 @@
+# Make file working and not relinking
+# No getnextline
+# Every thing else in libft should be working & excessable from the "minishell.h"
+# Remove test.c from SRC
+# Remove comment block before final testing
 NAME		:= minishell
 
 INC_DIR		:= include/
-INCLUDE		:= -I $(INC_DIR) $(LIB_DIR)
+INCLUDE		:= -I $(INC_DIR)
 
-C			:= gcc
+CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror -g
 LDFLAGS		:= -lreadline 
 RM			:= rm -rf
 
 SRC_DIR		:= src
-SRC_FILES	:= main.c
+SRC_FILES	:= main.c test.c
 SRC			:= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 BUILD_DIR	:= build
@@ -18,23 +23,22 @@ OBJ			:= $(addprefix $(BUILD_DIR)/, $(OBJ_FILES))
 
 LIB_DIR		:= libft
 LIBFT		:= $(LIB_DIR)/libft.a
-LIBFT_FLAGS	:= -L$(LIB_DIR) -lft
  
 
 all: $(NAME)
 
-$(NAME): $(OBJ) libft
-	$(C) $(CFLAGS) $(INCLUDE) $(OBJ) -o $@ $(LDFLAGS) $(LIBFT_FLAGS)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJ) -o $@ $(LDFLAGS) $(LIBFT)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c 
 	@mkdir -p $(BUILD_DIR)
-	$(C) $(CFLAGS) $(INCLUDE)-c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-libft:
-	make -C $(LIB_DIR)/
+$(LIBFT):
+	$(MAKE) -C $(LIB_DIR)
 
 clean:
-	$(RM) $(BUILD_DIR)/
+	$(RM) $(BUILD_DIR)
 	$(MAKE) -C $(LIB_DIR) clean
 	@echo "clean"
 
@@ -45,4 +49,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
