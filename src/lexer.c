@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2024/11/23 11:56:05 by tbaker           ###   ########.fr       */
+/*   Created: 2024/11/23 11:36:51 by tbaker            #+#    #+#             */
+/*   Updated: 2024/11/23 11:44:44 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_H
-#define	MINISHELL_H
+#include "minishell.h"
+#include "macros.h"
+#include <unistd.h>
+#include <stdio.h>
 
-// test.c
-int ft_test_libft(const char *str);
-
-// lexer.c
-void	ft_lexer(char *input);
-
-#endif
+/// @brief merge test and beginning of lexer
+/// 
+/// @prama input: is the prompt from the terminal
+///
+/// @todo everything
+void	ft_lexer(char *input)
+{
+	printf("Input = %s\n", input);
+}

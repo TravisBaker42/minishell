@@ -1,4 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
+/*   Updated: 2024/11/23 11:57:42 by tbaker           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+#include "macros.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <stdlib.h>
 
 /// @breif get the current envronment path and prints it to the terminal
 /// if there is no PATH set it prints not set to the terminal
@@ -26,7 +43,7 @@ void	test_prompt_loop(void)
 	while (1)
 	{
 		input = readline("Minishell prompt$ ");
-		printf("This is input stored input what = %s\n", input);
+		ft_lexer(input);
 		test_get_and_print_path();
 		free (input);
 	}
@@ -43,4 +60,3 @@ int	main(void)
 	test_prompt_loop();
 	return (0);
 }
-

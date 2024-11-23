@@ -1,4 +1,5 @@
 #include "minishell.h"
+#include "../libft/libft.h"
 
 int ft_test_libft(const char *str)
 {
