@@ -13,11 +13,11 @@ t_token_list	*ft_new_token_list(t_token token_type, char *token_value)
 	t_token_list	*new_token_node;
 	
 	new_token_node = (t_token_list *)malloc(sizeof(t_token_list));
-	if (!new_token_node)
-		return (NULL);
-	new_token_list->token_type = token_type;
-	new_token_list->token_value = token_value;
-	new_token_list->next = NULL;
+	//if (!new_token_node)
+	//	return (NULL);
+	new_token_node->token_type = token_type;
+	new_token_node->token_value = token_value;
+	new_token_node->next = NULL;
 	return	(new_token_node);
 }
 
@@ -26,13 +26,13 @@ t_token_list	*ft_new_token_list(t_token token_type, char *token_value)
 /// @prama head_token: start of the token_list
 ///
 /// @prama new_token: newly created intialised token
-void	*ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node)
+void	ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node)
 {
 	t_token_list	*temp_token_list;
 	
 	if (!new_node || !head_token)
-		return (NULL);
-	if (*head_token = NULL)
+		return ;
+	if (!(*head_token))
 		*head_token = new_node;
 	else
 	{
@@ -43,23 +43,31 @@ void	*ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node)
 	}
 }
 
+void	ft_new_token_node(t_token_list **head_token, t_token token_type, char *token_value)
+{
+	t_token_list *new_node;
+
+	new_node = ft_new_token_list(token_type, token_value);
+	ft_token_list_add_back(head_token, new_node);
+}
+
 /// @brief for testing <---------------------remove
 ///
 /// @parma head of the token_list
 ///
 /// @todo reomve before finial testing
-void	ft_test_print_token(t_token_list **head_token)
+void	ft_test_print_list(t_token_list **head_token)
 {
 	t_token_list	*temp_token_list;
 	int				i;
 
 	i = 0;
-	temp_token_list = head_token;
+	temp_token_list = *head_token;
 	while (temp_token_list)
 	{
 		printf("Token value = %s Token type = %d node postion = %d\n", temp_token_list->token_value, temp_token_list->token_type, i);
 		i++;
 		temp_token_list = temp_token_list->next;
 	}
-	printf("list finished");
+	printf("list finished need to added conditiions for quotes and $args\n");
 }

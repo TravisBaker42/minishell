@@ -14,7 +14,7 @@ LDFLAGS		:= -lreadline
 RM			:= rm -rf
 
 SRC_DIR		:= src
-SRC_FILES	:= main.c test.c lexer.c lexer_utils.c
+SRC_FILES	:= minishell.c test.c lexer.c lexer_utils.c utils.c lexer_token_functions.c
 SRC			:= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 BUILD_DIR	:= build

@@ -11,22 +11,31 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "../libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 
 /// @brief merge test and beginning of lexer
 /// 
-/// @prama input: is the terminal input from the prompt
+/// @prama input: is the terminal input from the prompt, current hard coded test string
+///
+/// @prama head_token: the gegin of the token_list
 ///
 ///	@todo lots of stuff do i show have a return value for errors
-void	ft_check_for_token(t_token_list **head_token, char *input)
+void	ft_tokenizer(t_token_list **head_token, const char *input)
 {
-	while (input)
-	{
-		if (*input == '|')
+	int	i;
 
-		*input++;
+	i = 0;
+	while (input[i] != '\0')
+	{
+		i = ft_iterates_space(input, i);
+		if (input[i] == '|')
+			i += ft_pipe(head_token, ft_strdup("|"));
+		else
+			i = ft_word(head_token, input, i);
 	}
+	//ft_eof(t_token_list(head_token);
 }
 
 /// @brief merge test and beginning of lexer
@@ -34,13 +43,13 @@ void	ft_check_for_token(t_token_list **head_token, char *input)
 /// @prama input: is the prompt from the terminal
 ///
 /// @todo everything
-t_token_list	**ft_lexer(char *input)
+t_token_list	*ft_lexer(const char *input)
 {
 	t_token_list	*head_token;
 
 	head_token = NULL;
-	ft_check_for_token(&head_token, input)
-	return (&head_token);
+	ft_tokenizer(&head_token, input);
+	return (head_token);
 }
 
 
