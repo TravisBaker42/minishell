@@ -62,6 +62,7 @@ int	main(void)
 	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls"; //<-----remove testing only
 	// next test case
 	//test_ptr = "\"l\"s | cat       | echo "hello '\' world " ;
+	//test_ptr = "echo \"$(date '+%Y-%m-%d') $(date)\"";
 	tokens = ft_lexer(test_ptr);
 	ft_test_print_list(&tokens);//<-----------------------testing only remove
 //	ft_execute(tokens);
