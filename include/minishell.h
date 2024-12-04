@@ -54,6 +54,7 @@ t_token_list	*ft_new_token(t_token token_type, char *token_value);
 void			ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node);
 void			ft_new_token_node(t_token_list **head_token, t_token token_type, char *token_value);
 void			ft_test_print_list(t_token_list **head_token);
+void			ft_free(t_token_list **tokens);
 
 // lexer_token_functions.c
 int				ft_pipe(t_token_list **head_token, char *token_value);
