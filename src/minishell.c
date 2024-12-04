@@ -59,7 +59,7 @@ int	main(void)
 	t_token_list		*tokens;
 	const char			*test_ptr;
 
-	test_ptr = "ls -la | grep -e s";
+	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls";
 	tokens = ft_lexer(test_ptr);
 	ft_test_print_list(&tokens);
 //	ft_execute(tokens);

@@ -65,9 +65,10 @@ void	ft_test_print_list(t_token_list **head_token)
 	temp_token_list = *head_token;
 	while (temp_token_list)
 	{
-		printf("Token value = %s Token type = %d node postion = %d\n", temp_token_list->token_value, temp_token_list->token_type, i);
+		printf("Token value = %s; Token type = %d; node postion = %d\n", temp_token_list->token_value, temp_token_list->token_type, i);
 		i++;
 		temp_token_list = temp_token_list->next;
 	}
 	printf("list finished need to added conditiions for quotes and $args\n");
+	printf("The linked list needs to be parsed into a use data type for the executer, token type 1 = PIPE and 2 = WORD\n");
 }
