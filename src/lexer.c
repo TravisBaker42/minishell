@@ -32,10 +32,16 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 		i = ft_iterates_space(input, i);
 		if (input[i] == '|')
 			i += ft_pipe(head_token, ft_strdup("|"));
+		else if (input[i] == '(' || input[i] == ')')
+			i += ft_brackets(head_token, input, i);
+		else if (input[i] == '>' || input[i] == '<')
+			i += ft_greater_lesser(head_token, input, i);
+		else if (input[i] == '\"')
+			i = ft_d_qoutes(head_token, input, i);
 		else
 			i = ft_word(head_token, input, i);
 	}
-	//ft_eof(t_token_list(head_token);
+	ft_new_token_node(head_token, TOKEN_EOF, NULL);
 }
 
 /// @brief merge test and beginning of lexer

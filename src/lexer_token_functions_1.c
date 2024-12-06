@@ -1,6 +1,46 @@
 #include "minishell.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 
+/// @breif Tokenizes ( ) and return the iterator to the next char input 
+///
+/// @todo
+int	ft_brackets(t_token_list **head_token, const char *input, int i)
+{
+	if (input[i] == '(')
+		ft_new_token_node(head_token, O_BRACKET, ft_strdup(")"));
+	else
+		ft_new_token_node(head_token, C_BRACKET, ft_strdup("("));
+	return (1);
+}
+
+/// @breif Tokenizes >> > << < and return the iterator to the next char input 
+///
+/// @todo 
+int	ft_greater_lesser(t_token_list **head_token, const char *input, int i)
+{
+	if (input[i] == '>')
+	{
+		if (input[i + 1] == '>')
+		{
+			ft_new_token_node(head_token, GREATER_GREATER, ft_strdup(">>"));
+			return (2);
+		}
+		else
+			ft_new_token_node(head_token, GREATER, ft_strdup(">"));
+	}
+	else
+	{
+		if (input[i + 1] == '<')
+		{
+			ft_new_token_node(head_token, LESSER_LESSER, ft_strdup("<<"));
+			return (2);
+		}
+		else
+			ft_new_token_node(head_token, LESSER, ft_strdup("<"));
+	}
+	return (1);
+}
 /// @Breif creates a new token node in the list and adds it to the back of
 /// the list with PIPE token and token value of '|'
 ///

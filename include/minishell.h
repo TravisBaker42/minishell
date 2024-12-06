@@ -24,8 +24,16 @@
 /* ************************************************************************** */
 typedef enum e_token {
 	PIPE = 1,
+	GREATER_GREATER,
+	GREATER,
+	LESSER_LESSER,
+	LESSER,
+	D_QUOTE,
+	S_QUOTE,
+	O_BRACKET,
+	C_BRACKET,
 	WORD,
-	EOF,
+	TOKEN_EOF,
 
 } t_token;
 
@@ -53,13 +61,19 @@ void			ft_tokenizer(t_token_list **head_list, const char *input);
 t_token_list	*ft_new_token(t_token token_type, char *token_value);
 void			ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node);
 void			ft_new_token_node(t_token_list **head_token, t_token token_type, char *token_value);
-void			ft_test_print_list(t_token_list **head_token);
+void			ft_test_print_list(t_token_list **head_token); // <<-----------------------remove only 4 testing
 void			ft_free(t_token_list **tokens);
 
 // lexer_token_functions.c
 int				ft_pipe(t_token_list **head_token, char *token_value);
 int				ft_word(t_token_list **head_token, const char *input, int i);
+int				ft_brackets(t_token_list **head_token, const char *input, int i);
+int				ft_greater_lesser(t_token_list **head_token, const char *input, int i);
 char			*ft_return_word(const char *input, int start, int end);
+
+// lexer_token_functions.c
+int				ft_d_qoutes(t_token_list **head_token, const char *input, int i);
+char			*ft_return_d_qoutes(const char *input, int start, int end);
 
 // utils.c
 int				ft_iterates_space(const char *input, int i);

@@ -59,7 +59,8 @@ int	main(void)
 	t_token_list		*tokens;
 	const char			*test_ptr;//<--------------------testing only remove and replace with prompt
 
-	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls"; //<-----remove testing only
+//	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls -la >> file.txt"; //<-----remove testing only
+	test_ptr = "() | djaslkdj \"hello  world\" > >> < <<       &&&"; //<-----remove testing only
 	// next test case
 	//test_ptr = "\"l\"s | cat       | echo "hello '\' world " ;
 	//test_ptr = "echo \"$(date '+%Y-%m-%d') $(date)\"";
