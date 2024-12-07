@@ -43,9 +43,12 @@ int	ft_d_qoutes(t_token_list **head_token, const char *input, int i)
 	{
 		token_value = ft_return_d_qoutes(input, start, i);
 		ft_new_token_node(head_token, D_QUOTE, token_value);
+		i++;//moves past qoute char
+		return (i);
 	}
 	else
+	{
 		printf("need to add function for unclosed double quotes\n");
-	i++;//moves past qoute char
-	return (i);
+		return (i);
+	}
 }
