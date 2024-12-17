@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:45:25 by jeschill          #+#    #+#             */
-/*   Updated: 2024/12/17 16:09:04 by jeschill         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:44:30 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/wait.h>
+#include "libft.h"
 //Remember to remove.
 #include <string.h>
 
-
-
+/*
 void	ft_freetabs(char **tab)
 {
 		int i;
@@ -63,13 +63,13 @@ void	ft_execvp(char **cmd, char **envp)
 {
 	char *path;
 
-	path = get_path(cmd[0])
+	path = get_path(cmd[0]);
 	if (execve(path, cmd, envp) == -1)
 	{
 		exit(1);
 	}
 }
-
+*/
 
 ///@Brief: Handles the Child processes.
 ///@To_do: Implement execve.
@@ -78,11 +78,12 @@ void	ft_execvp(char **cmd, char **envp)
 /// **envp: Contains the array of enviromental variabl pointers.
 void	child_process(char ***cmd, int *fd, int *fd_read, char **envp)
 {
+	(void)envp;
 	dup2(*fd_read, 0);
 	if (*(cmd + 1) != NULL)
 		dup2(fd[1], 1);
 	close(fd[0]);
-	ft_execvp((*cmd[0]), envp);
+	execvp((*cmd)[0], *cmd);
 	exit(1);
 }
 
