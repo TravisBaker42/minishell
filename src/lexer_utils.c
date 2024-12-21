@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 15:23:42 by tbaker            #+#    #+#             */
+/*   Updated: 2024/12/21 15:38:25 by tbaker           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,14 +23,14 @@
 t_token_list	*ft_new_token_list(t_token token_type, char *token_value)
 {
 	t_token_list	*new_token_node;
-	
+
 	new_token_node = (t_token_list *)malloc(sizeof(t_token_list));
 	//if (!new_token_node)
 	//	return (NULL);
 	new_token_node->token_type = token_type;
 	new_token_node->token_value = token_value;
 	new_token_node->next = NULL;
-	return	(new_token_node);
+	return (new_token_node);
 }
 
 /// @brief Adds newly create token node to end of the token list
@@ -29,7 +41,7 @@ t_token_list	*ft_new_token_list(t_token token_type, char *token_value)
 void	ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node)
 {
 	t_token_list	*temp_token_list;
-	
+
 	if (!new_node || !head_token)
 		return ;
 	if (!(*head_token))
@@ -45,17 +57,16 @@ void	ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node)
 
 void	ft_new_token_node(t_token_list **head_token, t_token token_type, char *token_value)
 {
-	t_token_list *new_node;
+	t_token_list	*new_node;
 
 	new_node = ft_new_token_list(token_type, token_value);
 	ft_token_list_add_back(head_token, new_node);
 }
 
-
 void	ft_free(t_token_list **tokens)
 {
-	t_token_list *current;
-	t_token_list *next_node;
+	t_token_list	*current;
+	t_token_list	*next_node;
 
 	current = *tokens;
 	while (current)
@@ -66,7 +77,7 @@ void	ft_free(t_token_list **tokens)
 			free(current->token_value);
 			current->token_value = NULL;
 		}
-		if(current)
+		if (current)
 		{
 			free(current);
 			current = NULL;

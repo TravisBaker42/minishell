@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:36:51 by tbaker            #+#    #+#             */
-/*   Updated: 2024/11/23 11:44:44 by tbaker           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:33:25 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 /// @brief merge test and beginning of lexer
 /// 
-/// @prama input: is the terminal input from the prompt, current hard coded test string
+/// @prama input: is the terminal input from the prompt, 
+/// current hard coded test string
 ///
 /// @prama head_token: the gegin of the token_list
 ///
@@ -57,5 +58,3 @@ t_token_list	*ft_lexer(const char *input)
 	ft_tokenizer(&head_token, input);
 	return (head_token);
 }
-
-

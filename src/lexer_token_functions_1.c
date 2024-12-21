@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_token_functions_1.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 14:05:20 by tbaker            #+#    #+#             */
+/*   Updated: 2024/12/21 15:32:13 by tbaker           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
@@ -47,6 +59,7 @@ int	ft_greater_lesser(t_token_list **head_token, const char *input, int i)
 /// @parma head_token: begin of the token_list
 ///
 /// @parma token_value: token value '|'
+
 int	ft_pipe(t_token_list **head_token, char *token_value)
 {
 	ft_new_token_node(head_token, PIPE, token_value);
@@ -82,7 +95,8 @@ int	ft_word(t_token_list **head_token, const char *input, int i)
 	int		start;
 
 	start = i;
-	while (input[i] != '\0' && input[i] != 32 && input[i] != 9 && input[i] != '|')
+	while (input[i] != '\0' && input[i] != 32 && input[i] != 9
+		&& input[i] != '|')
 		i++;
 	token_value = ft_return_word(input, start, i);
 	ft_new_token_node(head_token, WORD, token_value);

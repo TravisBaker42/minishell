@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_token_functions_2.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/21 15:30:02 by tbaker            #+#    #+#             */
+/*   Updated: 2024/12/21 15:30:49 by tbaker           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
@@ -37,7 +49,7 @@ int	ft_d_qoutes(t_token_list **head_token, const char *input, int i)
 
 	i++;// moves past quote char
 	start = i;
-	while(input[i] != '\0' && input[i] != '\"')
+	while (input[i] != '\0' && input[i] != '\"')
 		i++;
 	if (input[i] == '"')
 	{

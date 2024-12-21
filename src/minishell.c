@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2024/11/23 11:57:42 by tbaker           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:35:13 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	main(void)
 {
 	t_token_list		*tokens;
 	const char			*test_ptr;//<--------------------testing only remove and replace with prompt
-
 //	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls -la >> file.txt"; //<-----remove testing only
 	test_ptr = "() | djaslkdj \"hello  world\" > >> < <<       &&&"; //<-----remove testing only
 	// next test case
@@ -68,6 +67,5 @@ int	main(void)
 	ft_test_print_list(&tokens);//<-----------------------testing only remove
 //	ft_execute(tokens);
 	ft_free(&tokens);
-
 	return (0);
 }
