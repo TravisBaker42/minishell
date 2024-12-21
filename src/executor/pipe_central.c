@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:45:25 by jeschill          #+#    #+#             */
-/*   Updated: 2024/12/21 16:02:50 by jeschill         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:06:12 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_execvp(char **cmd, char **envp)
 ///@Brief: Handles the Child processes.
 ///@To_do: Implement execve.
 /// *fd: it's the array containing the pipe ends of our file descripters.
->>>>>>> test_executor
 /// *fd_read: is the read_end of the previous pipe.
 /// **envp: Contains the array of enviromental variabl pointers.
 void	ft_child_process(char ***cmd, int *fd, int fd_read, char **envp)
