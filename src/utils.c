@@ -6,11 +6,12 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:22:33 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:29:13 by tbaker           ###   ########.fr       */
+/*   Updated: 2024/12/21 17:28:28 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdlib.h>
 ///	@brief iterates i while input == space or tab and returns i
 ///	space == 32 and tab == 9
 ///
@@ -25,7 +26,7 @@ int	ft_iterates_space(const	char *input, int i)
 
 void	ft_freetabs(char **tab)
 {
-		size_t i;
+		int i;
 
 		i = 0;
 		while (tab[i])

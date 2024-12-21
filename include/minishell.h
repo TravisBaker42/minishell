@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 13:16:01 by jeschill         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:25:30 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ int				ft_iterates_space(const char *input, int i);
 void			ft_freetabs(char **tab);
 
 //executors/
+/*
 void			ft_pipe_central(char ***cmd, char **envp);
 void			ft_parent_process(int *fd, int *fd_read);
 void			ft_child_process(char ***cmd, int *fd, int *fd_read, char **envp);
 void			ft_execvp(char **cmd, char **envp);
 char			*get_path(char *cmd);
-
-
-
+*/
 
 #endif

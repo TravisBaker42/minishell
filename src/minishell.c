@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:35:13 by tbaker           ###   ########.fr       */
+/*   Updated: 2024/12/21 17:52:22 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,19 @@
 int	main(void)
 {
 	t_token_list		*tokens;
+//	char				***cmds;
 	const char			*test_ptr;//<--------------------testing only remove and replace with prompt
-//	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls -la >> file.txt"; //<-----remove testing only
-	test_ptr = "() | djaslkdj \"hello  world\" > >> < <<       &&&"; //<-----remove testing only
+	
+	test_ptr = "ls | wc -c | cat -e";
+		//	test_ptr = "      ls                               -la       |    grep -e s |      cat | ls -la >> file.txt"; //<-----remove testing only
+//	test_ptr = "() | djaslkdj \"hello  world\" > >> < <<       &&&"; //<-----remove testing only
 	// next test case
 	//test_ptr = "\"l\"s | cat       | echo "hello '\' world " ;
 	//test_ptr = "echo \"$(date '+%Y-%m-%d') $(date)\"";
 	tokens = ft_lexer(test_ptr);
+//	cmds = ft_parser(&tokens);
 	ft_test_print_list(&tokens);//<-----------------------testing only remove
-//	ft_execute(tokens);
+//	ft_execute(cmds);
 	ft_free(&tokens);
 	return (0);
 }
