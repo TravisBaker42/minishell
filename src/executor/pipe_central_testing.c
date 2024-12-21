@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_central.c                                     :+:      :+:    :+:   */
+/*   pipe_central_testing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:45:25 by jeschill          #+#    #+#             */
-/*   Updated: 2024/12/17 16:44:30 by jeschill         ###   ########.fr       */
+/*   Updated: 2024/12/21 12:23:59 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/wait.h>
-#include "libft.h"
+//#include "libft.h"
 //Remember to remove.
 #include <string.h>
 
@@ -59,6 +59,7 @@ char	*get_path(char *cmd)
 
 
 ///@Brief: Handles the execution of execve.
+///@To_do: Implemnet execve error handling.
 void	ft_execvp(char **cmd, char **envp)
 {
 	char *path;
@@ -83,7 +84,8 @@ void	child_process(char ***cmd, int *fd, int *fd_read, char **envp)
 	if (*(cmd + 1) != NULL)
 		dup2(fd[1], 1);
 	close(fd[0]);
-	execvp((*cmd)[0], *cmd);
+	ft_execvp( , envp)
+	//execvp((*cmd)[0], *cmd);
 	exit(1);
 }
 
