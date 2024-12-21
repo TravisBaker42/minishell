@@ -10,3 +10,16 @@ int	ft_iterates_space(const	char *input, int i)
 	   i++;	
 	return (i);
 }
+
+void	ft_freetabs(char **tab)
+{
+		size_t i;
+
+		i = 0;
+		while (tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
+}
