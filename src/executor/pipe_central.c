@@ -94,7 +94,8 @@ void	ft_pipe_central(char ***cmd, char **envp)
 	fd_read = 0;
 	while (*cmd != NULL)
 	{
-		pipe(fd);
+		if (pipe(fd) == -1)
+			exit (EXIT_FAILURE);//add to test warning
 		pid = fork();
 		if (pid == -1)
 			exit(1);
