@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 17:25:30 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:24:02 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ typedef struct	s_token_list
 	char				*token_value;
 	struct s_token_list	*next;
 } t_token_list;
+
+typedef struct	s_cmd_list
+{
+	char				**cmds;
+	t_token				*token_value;
+	struct s_cmd_list	*next;
+} t_cmd_list;
+
+typedef struct	s_data
+{
+	struct t_token_list	*token;
+	struct t_cmd_list	*cmd_list;
+	char				**envp;
+}
 
 /* ************************************************************************** */
 /*						   FUNCTION PROTOTYPES								  */

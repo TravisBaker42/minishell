@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 17:52:22 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:45:19 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,32 @@
 #include <readline/history.h>
 #include <stdlib.h>
 
-/// @breif get the current envronment path and prints it to the terminal
-/// if there is no PATH set it prints not set to the terminal
-///
-/// @todo need to remove before final testing <------------------------
-/*void	test_get_and_print_path(void)
-{
-	const char *path;
+///		for testing need to build real function
 
-	path = getenv("PATH");
-	if (path)
-		printf("PATH: %s\n", path);
-	else
-		printf("PATH not set\n");
+void	ft_non_interactive(int argc, char **argv, t_data *data)
+{
+	int i;
+
+	i = 0;
+	printf("non interactive has been selected need to build programme\n");
+	while(i < argc)
+	{
+		printf("number %i = %s\n", i, argv[1]);
+		i++;
+	}
 }
-*/
-/// @breif Currently a test for the prompt. Infantly loops printing the prompt and taking the user imput from the terminal then printing it to the terminal,
-/// also calls test_path. readline mallocs space for the input and returns a pointer to sting this why is free after use.
-/// 
-/// @todo do i need a return value, what break conditions are required to terminate the prompt 
-/// need to remove the \n from input after readline
-/*void	test_prompt_loop(void)
+
+///		@brief To recieve commands through prompt from the terminal
+void	ft_interactive(t_data *data)
 {
 	char *input;
 
-	while (1)
+	while (42)
 	{
 		input = readline("Minishell prompt$ ");
-		ft_lexer(input);
-		test_get_and_print_path();
+		data->token = ft_lexer(input);
+		data->cmd_list = ft_parser(data);
+		ft_execute(data);
 		free (input);
 	}
 }
@@ -54,6 +51,20 @@
 /// @todo lots of stuff need to add libft to the make file 
 /// are command line vars required does it require env path || just use getenv("PATH")
 /// Need to remove printf used for libft testing <------------------------------------------
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_data data;
+
+	data.envp = envp;
+	if (argc == 1)
+		ft_interactive(data);
+	else
+		ft_non_interactive(argc, argv, data);
+	return (EXIT_SUCCESS);
+}	
+
+/*
 int	main(void)
 {
 	t_token_list		*tokens;
@@ -72,4 +83,4 @@ int	main(void)
 //	ft_execute(cmds);
 	ft_free(&tokens);
 	return (0);
-}
+}*/
