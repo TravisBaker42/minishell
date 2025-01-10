@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/08 18:45:19 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:31:31 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h>
 
 ///		for testing need to build real function
-
 void	ft_non_interactive(int argc, char **argv, t_data *data)
 {
 	int i;
@@ -40,12 +39,12 @@ void	ft_interactive(t_data *data)
 	{
 		input = readline("Minishell prompt$ ");
 		data->token = ft_lexer(input);
-		data->cmd_list = ft_parser(data);
+		ft_parser(data);
 		ft_execute(data);
 		free (input);
 	}
 }
-*/
+
 /// @breif basic main calls prompt loop 
 ///
 /// @todo lots of stuff need to add libft to the make file 
@@ -63,7 +62,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_non_interactive(argc, argv, data);
 	return (EXIT_SUCCESS);
 }	
-
 /*
 int	main(void)
 {
