@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:45:25 by jeschill          #+#    #+#             */
-/*   Updated: 2024/12/21 16:06:12 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/10 13:51:31 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_execvp(char **cmd, char **envp)
 	char *path;
 
 	path = ft_get_path(cmd[0]);
+	printf("%s\n", path);//----------------------------------------remove for test only
 	if (execve(path, cmd, envp) == -1)
 	{
 		exit(1);
@@ -66,7 +67,7 @@ void	ft_execvp(char **cmd, char **envp)
 void	ft_child_process(char ***cmd, int *fd, int fd_read, char **envp)
 {
 	dup2(fd_read, 0);
-	if (*(cmd + 1) != NULL)
+	if (*(cmd + 1) != NULL)//not the last || first arg
 		dup2(fd[1], 1);
 	close(fd[0]);
 	ft_execvp(cmd[0], envp);
@@ -113,10 +114,11 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	char *cat[] = {"cat", "-e",NULL};
+//	char *cat[] = {"cat", "-e",NULL};
 	char *wc[] = {"wc", "-c", NULL};
 	char *ls[] = {"ls", NULL};
-	char **cmd[] = {ls, wc, cat, NULL};
+//	char **cmd[] = {ls, wc, cat, NULL};
+	char **cmd[] = {ls, wc, NULL};
 
 	ft_pipe_central(cmd, envp);
 	return (0);
