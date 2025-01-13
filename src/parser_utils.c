@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdlib.h>
+#include <stdio.h>// removew for testing
 
 void	ft_cmd_list_add_back(t_cmd_list **head_cmd, t_cmd_list *new_node)
 {
@@ -23,13 +25,14 @@ void	ft_cmd_list_add_back(t_cmd_list **head_cmd, t_cmd_list *new_node)
 	else
 	{
 		temp_cmd_list = *head_cmd;
+		//while(temp_cmd_list->next)
 		while(temp_cmd_list->next)
 			temp_cmd_list = temp_cmd_list->next;
-		temp_token_list->next = new_node;
+		temp_cmd_list->next = new_node;
 	}
 }
 
-t_token_list	*ft_new_cmd_list(char **cmds, t_token token_type)
+t_cmd_list	*ft_new_cmd_list(char **cmds, t_token token_type)
 {
 	t_cmd_list	*new_cmd_node;
 

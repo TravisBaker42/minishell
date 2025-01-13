@@ -16,12 +16,32 @@
 #include <readline/history.h>
 #include <stdlib.h>
 
+/*void	ft_test_print_cmd_list(t_data *data)
+{
+	int			i;
+	t_cmd_list	*print_cmds;
+
+	print_cmds = data->cmd_list;
+	while (print_cmds)
+	{
+		i = 0;
+		while(print_cmds->cmds[i])
+		{
+			printf("%s ", print_cmds->cmds[i]);
+			i++;
+		}
+		print_cmds = print_cmds->next;
+		printf("\n");
+	}
+}*/
+
 ///		for testing need to build real function
 void	ft_non_interactive(int argc, char **argv, t_data *data)
 {
 	int i;
 
 	i = 0;
+	(void)data;
 	printf("non interactive has been selected need to build programme\n");
 	while(i < argc)
 	{
@@ -38,9 +58,11 @@ void	ft_interactive(t_data *data)
 	while (42)
 	{
 		input = readline("Minishell prompt$ ");
+//		input = "ls | ls";
 		data->token = ft_lexer(input);
 		ft_parser(data);
-		ft_execute(data);
+//		ft_test_print_cmd_list(data);//<--------------------------------remove for testing
+		ft_executor(data);
 		free (input);
 	}
 }
@@ -57,9 +79,9 @@ int	main(int argc, char **argv, char **envp)
 
 	data.envp = envp;
 	if (argc == 1)
-		ft_interactive(data);
+		ft_interactive(&data);
 	else
-		ft_non_interactive(argc, argv, data);
+		ft_non_interactive(argc, argv, &data);
 	return (EXIT_SUCCESS);
 }	
 /*

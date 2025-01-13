@@ -34,7 +34,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 # array/list of packages to install
-PACKAGES=("git" "vim" "curl" "vlc")
+PACKAGES=("git" "vim" "curl" "vlc" "libreadline-dev" "valgrind")
 
 # installs each package
 for PACKAGE in "${PACKAGES[@]}"; do
