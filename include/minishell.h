@@ -13,11 +13,14 @@
 #ifndef	MINISHELL_H
 #define	MINISHELL_H
 
+#include "../libft/libft.h"
+
 /* ************************************************************************** */
 /*								MACROS										  */
 /* ************************************************************************** */
-#define EXIT_SUCCESS 0
-#define EXIT_FAILURE 1
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+
 
 /* ************************************************************************** */
 /*								ENUMS										  */
@@ -123,5 +126,9 @@ void			ft_child_process(char ***cmd, int *fd, int *fd_read, char **envp);
 void			ft_execvp(char **cmd, char **envp);
 char			*get_path(char *cmd);
 */
+
+
+// Buitins:
+int				ft_pwd(void);
 
 #endif
