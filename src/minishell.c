@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 13:04:31 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:17:49 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 	}
 }*/
 
+void	ft_free_malloc(t_data *data)
+{
+	if (data->cmd_list)
+		ft_free_cmd_list(&data->cmd_list);
+	if (data->token)
+		ft_free_token_list(&data->token);
+}
+
 ///		for testing need to build real function
 void	ft_non_interactive(int argc, char **argv, t_data *data)
 {
@@ -61,6 +69,7 @@ void	ft_interactive(t_data *data)
 		data->token = ft_lexer(input);
 		ft_parser(data);	
 		ft_executor(data);//need to free data for cmd_list and token_list 
+		ft_free_malloc(data);
 		free (input);
 	}
 }

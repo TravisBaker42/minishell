@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/10 18:48:28 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:43:01 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct	s_data
 /*						   FUNCTION PROTOTYPES								  */
 /* ************************************************************************** */
 
+// minishell.c 
+void			ft_free_malloc(t_data *data);
+
 // parser.c
 void			ft_init_cmd_list(t_data *data, t_token_list **token_start, int len);
 char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int len);
@@ -74,7 +77,8 @@ void			ft_parser(t_data *data);
 // parser_utils.c
 void			ft_new_cmd_token_node(t_cmd_list **cmd_list, char **cmds, t_token token_type);
 void			ft_cmd_list_add_back(t_cmd_list **head_cmd, t_cmd_list *new_node);
-t_cmd_list	*ft_new_cmd_list(char **cmds, t_token token_typed);
+t_cmd_list		*ft_new_cmd_list(char **cmds, t_token token_typed);
+void			ft_free_cmd_list(t_cmd_list **head_cmd);
 
 // lexer.c
 t_token_list	*ft_lexer(const char *input);
@@ -85,7 +89,7 @@ t_token_list	*ft_new_token(t_token token_type, char *token_value);
 void			ft_token_list_add_back(t_token_list **head_token, t_token_list *new_node);
 void			ft_new_token_node(t_token_list **head_token, t_token token_type, char *token_value);
 void			ft_test_print_list(t_token_list **head_token); // <<-----------------------remove only 4 testing
-void			ft_free(t_token_list **tokens);
+void			ft_free_token_list(t_token_list **tokens);
 
 // lexer_token_functions.c
 int				ft_pipe(t_token_list **head_token, char *token_value);

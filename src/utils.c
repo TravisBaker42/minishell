@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:22:33 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 17:28:28 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:54:03 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	ft_freetabs(char **tab)
 		i = 0;
 		while (tab[i])
 		{
-			free(tab[i]);
+			if (tab[i])
+				free(tab[i]);
 			i++;
 		}
-		free(tab);
+		if (tab)
+			free(tab);
 }

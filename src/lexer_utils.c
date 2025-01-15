@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:23:42 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:38:25 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:03:30 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_new_token_node(t_token_list **head_token, t_token token_type, char *toke
 	ft_token_list_add_back(head_token, new_node);
 }
 
-void	ft_free(t_token_list **tokens)
+void	ft_free_token_list(t_token_list **tokens)
 {
 	t_token_list	*current;
 	t_token_list	*next_node;
@@ -72,11 +72,11 @@ void	ft_free(t_token_list **tokens)
 	while (current)
 	{
 		next_node = current->next;
-		if (current->token_value)
-		{
-			free(current->token_value);
-			current->token_value = NULL;
-		}
+//		if (current->token_value)
+//		{
+//			free(current->token_value);
+//			current->token_value = NULL;
+//		}
 		if (current)
 		{
 			free(current);

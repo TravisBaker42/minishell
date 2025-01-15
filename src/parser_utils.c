@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:07:30 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/10 18:48:25 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:57:09 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,29 @@ void	ft_new_cmd_token_node(t_cmd_list **cmd_list, char **cmds, t_token token_typ
 
 	new_node = ft_new_cmd_list(cmds, token_type);
 	ft_cmd_list_add_back(cmd_list, new_node);
+}
+
+void	ft_free_cmd_list(t_cmd_list **head_cmd)
+{
+	t_cmd_list	*current;
+	t_cmd_list	*next_node;
+
+	current = *head_cmd;
+	while (current)
+	{
+		next_node = current->next;
+		if (current->cmds)
+		{
+			ft_freetabs(current->cmds);
+			current->cmds = NULL;
+		}
+		if (current)
+		{
+			free(current);
+			current = NULL;
+		}
+		current = next_node;
+	}
 }
 /*
 
