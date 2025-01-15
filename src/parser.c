@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:41:26 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/10 18:48:24 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:19:18 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ void	ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list
 	i = 0;
 	while(token_current->token_type != TOKEN_EOF)
 	{
-		if(token_current->token_type <= LESSER)//change to <= LESSER for delimetor
+		if(token_current->token_type == WORD)
+			i++;
+		if(token_current->token_type <= LESSER || token_current->next->token_type == TOKEN_EOF) //change to <= LESSER for delimetor
 		{
 			ft_init_cmd_list(data, &token_start, i);
 			i = 0;
 		}
 		token_current = token_current->next;
-		i++;
 	}
 }
 
@@ -89,5 +90,6 @@ void	ft_parser(t_data *data)
 	token_start = data->token;
 	token_current = data->token;
 	ft_create_cmds_arrays(data, token_start, token_current);
+//	printf("Testing ----------------------------------------\nTesting ---cmd_list = %s %s---------\n", data->cmd_list->cmds[0], data->cmd_list->cmds[1]);//<---------------testing remove
 
 }

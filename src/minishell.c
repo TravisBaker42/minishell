@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/10 18:31:31 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:31 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 	printf("non interactive has been selected need to build programme\n");
 	while(i < argc)
 	{
-		printf("number %i = %s\n", i, argv[1]);
+		printf("number %i = %s\n", i, argv[i]);
 		i++;
 	}
 }
@@ -58,11 +58,9 @@ void	ft_interactive(t_data *data)
 	while (42)
 	{
 		input = readline("Minishell prompt$ ");
-//		input = "ls | ls";
 		data->token = ft_lexer(input);
-		ft_parser(data);
-//		ft_test_print_cmd_list(data);//<--------------------------------remove for testing
-		ft_executor(data);
+		ft_parser(data);	
+		ft_executor(data);//need to free data for cmd_list and token_list 
 		free (input);
 	}
 }
