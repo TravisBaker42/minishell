@@ -3,6 +3,8 @@
 #include <limits.h>
 #include <unistd.h>
 
+
+///@Brief: Print the current working directory and siplays to stdout 1.
 int	ft_pwd(void)
 {
 	char	cwd[PATH_MAX];
@@ -15,8 +17,9 @@ int	ft_pwd(void)
 	else
 		return (0);
 }
-
+/*
 int main()
 {
 	return (ft_pwd());
 }
+*/
