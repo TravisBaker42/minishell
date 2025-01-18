@@ -3,6 +3,7 @@
 #include "../../include/minishell.h"
 #include <unistd.h>
 
+///@Brief: Counts Number of arguments in the string array.
 static int	arg_count(char **str)
 {
 	int	i;
@@ -13,6 +14,9 @@ static int	arg_count(char **str)
 	return (i);
 }
 
+///@Brief: Echos the str with the flag option -n that disables newline.
+///@To_do: Double check it behaves the same way as BASH.
+>>>>>>> jeschill/builtins
 int	ft_echo(char **str)
 {
 	int	i;
@@ -40,9 +44,20 @@ int	ft_echo(char **str)
 	return (SUCCESS);
 }
 
+/*
 int main()
-{
+{	
+	char *arg[] = {"", NULL};
+	char *arg[] = {NULL};
 	char *arg[] = {"Hello", NULL};
+	char *arg[] = {"Hello World", NULL};
+	char *arg[] = {"Hello", "World", NULL};
 
+	char *arg[] = {"-n", "", NULL};
+	char *arg[] = {"-n", NULL};
+	char *arg[] = {"-n", "Hello", NULL};
+	char *arg[] = {"-n", "Hello World", NULL};
+	char *arg[] = {"-n", "Hello", "World", NULL};
 	return (ft_echo(arg));
 }
+*/
