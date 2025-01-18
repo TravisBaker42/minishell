@@ -61,11 +61,13 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 ///		@brief To recieve commands through prompt from the terminal
 void	ft_interactive(t_data *data)
 {
+	char *prompt;
 	char *input;
 
+	prompt = "\033[1;36mMinishell prompt$ \033[0m";
 	while (42)
 	{
-		input = readline("Minishell prompt$ ");
+		input = readline(prompt);
 		data->token = ft_lexer(input);
 		ft_parser(data);	
 		ft_executor(data);//need to free data for cmd_list and token_list 
