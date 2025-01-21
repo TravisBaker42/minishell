@@ -65,6 +65,13 @@ typedef struct	s_data
 	char			**envp;
 } t_data;
 
+typedef struct	s_envp
+{
+	char			*env;
+	struct t_envp	*next;
+}	t_envp;
+
+
 /* ************************************************************************** */
 /*						   FUNCTION PROTOTYPES								  */
 /* ************************************************************************** */
