@@ -65,6 +65,14 @@ typedef struct	s_data
 	char			**envp;
 } t_data;
 
+typedef struct s_lvl
+{
+	int				lvl;
+	struct t_envp	env;
+	struct t_levl	next;
+	struct t_levl	prev;
+}	t_lvl;
+
 typedef struct	s_envp
 {
 	char			*env;
