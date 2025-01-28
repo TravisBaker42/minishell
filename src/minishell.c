@@ -83,6 +83,7 @@ void	ft_interactive(t_data *data)
 	while (42)
 	{
 		input = readline(prompt);
+		add_history(input);//one fucking line for cml history
 		data->token = ft_lexer(input);
 		ft_parser(data);	
 		ft_init_env(data); //initalise intial shell lvl varaibles
