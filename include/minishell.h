@@ -58,34 +58,48 @@ typedef struct	s_cmd_list
 	struct s_cmd_list	*next;
 } t_cmd_list;
 
+typedef struct	s_env_lst
+{
+	char				*env_var;
+	struct s_env_lst	*next;
+}	t_env_lst;
+
+typedef struct s_lvl_lst
+{
+	int					lvl;
+	t_env_lst			*env_lst;
+	struct s_lvl_lst	*next;
+}	t_lvl_lst;
+
 typedef struct	s_data
 {
 	t_token_list	*token;
 	t_cmd_list		*cmd_list;
+	t_lvl_lst		*lvl_lst;
 	char			**envp;
 } t_data;
-
-typedef struct s_lvl
-{
-	int				lvl;
-	struct t_envp	env;
-	struct t_levl	next;
-	struct t_levl	prev;
-}	t_lvl;
-
-typedef struct	s_envp
-{
-	char			*env;
-	struct t_envp	*next;
-}	t_envp;
-
 
 /* ************************************************************************** */
 /*						   FUNCTION PROTOTYPES								  */
 /* ************************************************************************** */
 
-// minishell.c 
+// minishell.c //will move into utils or something
 void			ft_free_malloc(t_data *data);
+
+// ft_env_lst.c
+void			ft_free_env_lst(t_env_lst **env_token);
+t_env_lst		*ft_new_env_lst(char *env_var);
+void			ft_env_lst_add_back(t_env_lst **head_env, t_env_lst *new_node);
+void			ft_new_env_node(t_env_lst **mini_env_lst, char *env_var);
+t_env_lst		*ft_env_lst(char **envp);
+
+// ft_init_env.c //one too many function need to move one for norm 
+void			ft_init_env(t_data *data);
+void			ft_init_lvl(t_data *data, t_lvl_lst **head_lvl);
+t_env_lst		*ft_copy_env_lst(t_env_lst *new_lst);
+void			ft_new_lvl_node(t_lvl_lst **head_lvl, int lvl, t_env_lst *env_lst);
+void			ft_lvl_lst_add_start(t_lvl_lst **head_lvl, t_lvl_lst *new_node);
+t_lvl_lst		*ft_new_lvl_lst(int lvl, t_env_lst *env_lst);
 
 // parser.c
 void			ft_init_cmd_list(t_data *data, t_token_list **token_start, int len);
