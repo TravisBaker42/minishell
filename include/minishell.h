@@ -47,7 +47,7 @@ typedef enum e_token {
 typedef struct	s_token_list
 {
 	t_token				token_type;
-char				*token_value;
+	char				*token_value;
 	struct s_token_list	*next;
 } t_token_list;
 
@@ -84,7 +84,7 @@ typedef struct	s_envp
 /*						   FUNCTION PROTOTYPES								  */
 /* ************************************************************************** */
 
-// minishell.c 
+// minishell.c
 void			ft_free_malloc(t_data *data);
 
 // parser.c

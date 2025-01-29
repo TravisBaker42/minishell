@@ -109,7 +109,7 @@ void	ft_pipe_central(char ***cmd, char **envp)
 		}
 	}
 }
-
+/*
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -123,3 +123,5 @@ int	main(int argc, char **argv, char **envp)
 	ft_pipe_central(cmd, envp);
 	return (0);
 }
+*/
+

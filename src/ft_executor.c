@@ -12,10 +12,12 @@
 #include "minishell.h"
 
 /// Brief@ : Handles all command executions: Including piping, redirections, file creation, builtins;
-/// Todo@  : Implement cmd format bundling speciafically for piping. Builtins may be implemented in pipe_central or here?
+/// Todo@  : Implement cmd format bundling speciafically for piping. Builtins
+//			 may be implemented in pipe_central or here?
 ///	     File creation implementation. ...
 void	ft_executor(t_data *data)
-{ 
+{
+
 	ft_pipe_central(data->cmd_list, data->envp);
 }
 
