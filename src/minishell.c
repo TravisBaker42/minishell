@@ -35,6 +35,21 @@
 	}
 }*/
 
+// remove only for testing
+void	ft_test_env(t_lvl_lst *current_shell)
+{
+	t_env_lst	*env_lst;
+
+	env_lst = current_shell->env_lst;
+	printf("current shell lvl = %d\n", current_shell->lvl);
+	while (env_lst)
+	{
+		printf("%s\n", env_lst->env_var);
+		env_lst = env_lst->next;
+	}
+	printf("test complete\n");
+}
+
 void	ft_free_malloc(t_data *data)
 {
 	if (data->cmd_list)
@@ -68,8 +83,15 @@ void	ft_interactive(t_data *data)
 	while (42)
 	{
 		input = readline(prompt);
+		add_history(input);//one fucking line for cml history
 		data->token = ft_lexer(input);
 		ft_parser(data);	
+		ft_init_env(data); //initalise intial shell lvl varaibles
+		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
+									// need to test for mulitipule shells 
+									// need to build control statement to catch 
+									// "./minishell" then call ft_init_lvl
+									// and dup current env_lst to a new lvl_lst node
 		ft_executor(data);//need to free data for cmd_list and token_list 
 		ft_free_malloc(data);
 		free (input);
@@ -88,7 +110,9 @@ int	main(int argc, char **argv, char **envp)
 
 	data.envp = envp;
 	if (argc == 1)
+	{
 		ft_interactive(&data);
+	}
 	else
 		ft_non_interactive(argc, argv, &data);
 	return (EXIT_SUCCESS);

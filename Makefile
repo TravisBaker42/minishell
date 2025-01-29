@@ -16,7 +16,7 @@ RM			:= 	rm -rf
 SRC_DIR		:= 	src
 SRC_FILES	:= 	minishell.c lexer.c lexer_utils.c utils.c lexer_token_functions_1.c \
 				lexer_token_functions_2.c parser.c parser_utils.c ft_pipe_central.c \
-				ft_executor.c
+				ft_executor.c ft_init_env.c ft_env_lst.c
 SRC			:= 	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 BUILD_DIR	:= 	build
