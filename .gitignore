@@ -9,6 +9,10 @@ minishell
 *.obj
 *.elf
 
+# VIM 
+*.swp
+*.swo
+
 # Linker output
 *.ilk
 *.map
