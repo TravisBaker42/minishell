@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 13:43:01 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:48:10 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 /* ************************************************************************** */
 /*								ENUMS										  */
 /* ************************************************************************** */
+
+//we gotta rename these bad boys to what they do. Mainly Greater_Greater down to LESSER.
 typedef enum e_token {
 	PIPE = 1,
 	GREATER_GREATER,
@@ -44,6 +46,22 @@ typedef enum e_token {
 /* ************************************************************************** */
 /*								STRUCTS										  */
 /* ************************************************************************** */
+
+//	May incorporate into main struct for easier access.
+//	system default fd, opened file fd, pipe fd. is it a Parent process?
+//	To be expanded? Honestly anything that needs to be tracked in int.
+typedef	struct	s_fd_tracker
+{
+	int	in;
+	int	out;
+	int	fd_in;
+	int fd_out;
+	int	pipe_in;
+	int pipe_out;
+	int	pid;
+	int	is_parent;
+}
+
 typedef struct	s_token_list
 {
 	t_token				token_type;
@@ -77,6 +95,7 @@ typedef struct	s_data
 	t_cmd_list		*cmd_list;
 	t_lvl_lst		*lvl_lst;
 	char			**envp;
+
 } t_data;
 
 /* ************************************************************************** */

@@ -17,7 +17,6 @@
 ///	     File creation implementation. ...
 void	ft_executor(t_data *data)
 {
-
 	ft_pipe_central(data->cmd_list, data->envp);
 }
 
