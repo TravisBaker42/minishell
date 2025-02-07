@@ -16,14 +16,20 @@
 
 ///		@Breif initlise the cmd list with new nodes assisgns token_type and
 ///		cmds array
-void	ft_init_cmd_list(t_data *data, t_token_list **token_start, int len)
+void	ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int len)
 {
-	char	**cmds;
-	t_token	token_type;
+	char			**cmds;
+	int				token_type;
+	//t_token_list	*temp_current;
 
 	token_type = (*token_start)->token_type;
 	cmds = ft_copy_token_value(data, token_start, len);
-	ft_new_cmd_token_node(&data->cmd_list, cmds, token_type);
+	if (len > 0) //so it dose not create for when only <= lesser is pasted
+		ft_new_cmd_token_node(&data->cmd_list, cmds, token_type);
+	//	adds pipe or redirect between words
+	if (token_current->token_type <= LESSER)
+		// when free the NULL cmds in the cmd_lst if the pipes and redirects can double free maybe 
+		ft_new_cmd_token_node(&data->cmd_list, NULL, token_current->token_type);
 }	
 
 ///		@Breif the cmd array now points the current token_types from token_list
@@ -71,7 +77,7 @@ void	ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list
 			i++;
 		if(token_current->token_type <= LESSER || token_current->next->token_type == TOKEN_EOF) //change to <= LESSER for delimetor
 		{
-			ft_init_cmd_list(data, &token_start, i);
+			ft_init_cmd_list(data, &token_start, token_current, i);
 			i = 0;
 		}
 		token_current = token_current->next;

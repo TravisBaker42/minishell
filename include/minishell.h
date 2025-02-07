@@ -50,7 +50,7 @@ typedef enum e_token {
 //	May incorporate into main struct for easier access.
 //	system default fd, opened file fd, pipe fd. is it a Parent process?
 //	To be expanded? Honestly anything that needs to be tracked in int.
-typedef	struct	s_fd_tracker
+/*typedef	struct	s_fd_tracker
 {
 	int	in;
 	int	out;
@@ -60,7 +60,7 @@ typedef	struct	s_fd_tracker
 	int pipe_out;
 	int	pid;
 	int	is_parent;
-}
+}*/
 
 typedef struct	s_token_list
 {
@@ -121,7 +121,7 @@ void			ft_lvl_lst_add_start(t_lvl_lst **head_lvl, t_lvl_lst *new_node);
 t_lvl_lst		*ft_new_lvl_lst(int lvl, t_env_lst *env_lst);
 
 // parser.c
-void			ft_init_cmd_list(t_data *data, t_token_list **token_start, int len);
+void			ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int len);
 char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int len);
 void			ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list *token_current);
 void			ft_parser(t_data *data);

@@ -16,7 +16,7 @@
 #include <readline/history.h>
 #include <stdlib.h>
 
-/*void	ft_test_print_cmd_list(t_data *data)
+void	ft_test_print_cmd_list(t_data *data)
 {
 	int			i;
 	t_cmd_list	*print_cmds;
@@ -25,15 +25,23 @@
 	while (print_cmds)
 	{
 		i = 0;
-		while(print_cmds->cmds[i])
+		if(print_cmds->cmds == NULL)
 		{
-			printf("%s ", print_cmds->cmds[i]);
-			i++;
+			printf("token_type = %d\n", print_cmds->token_type);
+		}
+		else
+		{
+			while(print_cmds->cmds[i])
+			{
+				printf("%s ", print_cmds->cmds[i]);
+				i++;
+			}
+			printf("\n");
 		}
 		print_cmds = print_cmds->next;
-		printf("\n");
 	}
-}*/
+	printf("test complete\n\n\n\n");
+}
 
 // remove only for testing
 void	ft_test_env(t_lvl_lst *current_shell)
@@ -61,7 +69,16 @@ void	ft_free_malloc(t_data *data)
 ///		for testing need to build real function
 void	ft_non_interactive(int argc, char **argv, t_data *data)
 {
-	int i;
+	char	*input;
+
+	(void) argc;
+	input = argv[1];
+	data->token = ft_lexer(input);
+	ft_parser(data);	
+	ft_test_print_cmd_list(data);
+	printf("end of test for cmd list\n");
+
+/*	int i;
 
 	i = 0;
 	(void)data;
@@ -70,7 +87,7 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 	{
 		printf("number %i = %s\n", i, argv[i]);
 		i++;
-	}
+	}*/
 }
 
 ///		@brief To recieve commands through prompt from the terminal
@@ -86,6 +103,7 @@ void	ft_interactive(t_data *data)
 		add_history(input);//one fucking line for cml history
 		data->token = ft_lexer(input);
 		ft_parser(data);	
+		ft_test_print_cmd_list(data);//remove for testing
 		ft_init_env(data); //initalise intial shell lvl varaibles
 		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
 									// need to test for mulitipule shells 
