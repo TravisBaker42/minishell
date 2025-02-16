@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:41:26 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 13:19:18 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/16 13:14:58 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list
 		}
 		token_current = token_current->next;
 	}
+	//added end of file node here 
+	if (token_current->token_type == TOKEN_EOF)
+		ft_new_cmd_token_node(&data->cmd_list, NULL, token_current->token_type);
 }
 
 /// @brief parsers tokens into array of array of strings

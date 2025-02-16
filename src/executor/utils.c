@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:03:24 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/16 00:06:22 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/16 14:37:45 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	type_id(t_node *node, int type)
 		return (0);
 }
 
-t_node	*next_sep(t_node *origin);
+t_node	*next_sep(t_node *origin)
 {
 	while (origin && origin->token_type == 0)//1 and above are seperators;
 		origin = origin->next;
 	return(origin);
 }
 
-t_node	*prev_sep();
+t_node	*prev_sep(t_node *origin)
 {
 	while (origin && origin->token_type == 0)//1 and above are seperators;
 		origin = origin->prev;

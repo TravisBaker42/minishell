@@ -6,11 +6,13 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 00:19:29 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/16 10:56:13 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/16 14:49:47 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ""
+#include "testing.h"
+#include "lib/libft/libft.h"
+#include <stdlib.h>
 
 
 char	*ft_get_path(char *cmd)
@@ -52,7 +54,7 @@ void	ft_execvp(char **cmd, char **envp)
 /// *fd: it's the array containing the pipe ends of our file descripters.
 /// *fd_read: is the read_end of the previous pipe.
 /// **envp: Contains the array of enviromental variabl pointers.
-void	ft_child_process(char ***cmd, int *fd, int fd_read, char **envp)
+/*void	ft_child_process(char ***cmd, int *fd, int fd_read, char **envp)
 {
 	dup2(fd_read, 0);
 	if (*(cmd + 1) != NULL)//not the last || first arg
@@ -97,10 +99,11 @@ void	ft_pipe_central(char ***cmd, char **envp)
 		}
 	}
 }
-
+*/
 int	exec_bin(char **cmd, char **envp)
 {
 	ft_execvp(cmd, envp);
+	return (1);//added for return type of non-void functoin 
 }
 
 ///@Brief:	Executes cmd, either buitltin or bin.
@@ -108,14 +111,12 @@ int	exec_bin(char **cmd, char **envp)
 ///@Notes:	
 void	exec_cmd(t_data *data, t_node *node, char **envp)
 {
-	if (cmd && is_it_builtin(node->cmd[0]))
+	if (node->cmd && is_it_builtin(node->cmd[0]))
 		data->ret = exec_builtins(node->cmd, data);
-	else if (cmd)
-		data->ret = exec_bin(node->cmd, data, envp); //Include env;
+	else if (node->cmd)
+		data->ret = exec_bin(node->cmd, envp); //Include env;
 	ft_close(data->pipe_in);
 	ft_close(data->pipe_out);
 	data->pipe_in = -1;
 	data->pipe_out = -1;
 }
-
-

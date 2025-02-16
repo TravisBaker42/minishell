@@ -1,6 +1,7 @@
-
-
-
+#include "testing.h"
+#include "../lib/libft/libft.h"
+#include <unistd.h>
+#include <stdio.h>
 
 
 ///@Brief:	Checks if its a builtin. Returns 1 if yes, 0 if else.
@@ -33,7 +34,7 @@ int	is_it_builtin(char *cmd)
 ///@Notes;	Assuming it's grabbed from t_cmd_list
 int exec_builtins(char **cmd, t_data *data)
 {
-	int	ret_code;
+/*	int	ret_code;
 
 	if (ft_strncmp(cmd[0], "echo", 4) == 0)
 		ret_code = ft_echo(cmd);
@@ -49,5 +50,9 @@ int exec_builtins(char **cmd, t_data *data)
 		//ret_code = ft_env(data->env);
 	else if (ft_strncmp(cmd[0], "exit", 4) == 0)
 		//ret_code = ft_exit();
-	return (ret_code);
+	return (ret_code);*/
+	(void) cmd;//remove for testing
+	(void) data;//remove for testing
+	printf("Hi from builtin\n");//testing remive
+	return (42);//teting remove
 }
