@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/16 10:54:34 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/16 12:19:09 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	executor(t_data *data, t_node *cmd, char **envp)
 	else if (type_id(prev, INPUT))
 		input(data, cmd);
 	else if (type_id(prev, PIPE))
-		quick_pipe(data);
+		pip_child = quick_pipe(data);
 	if (next && type_id(next, END) == 0 && pip_child != 1)
 		executor(data, next->next);
 	if ((type_id(prev, PIPE) || !prev) && pip_child != 1 && data->no_exec == 0)
