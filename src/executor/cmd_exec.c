@@ -1,26 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_central.c                                     :+:      :+:    :+:   */
+/*   cmd_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 15:45:25 by jeschill          #+#    #+#             */
-/*   Updated: 2025/01/10 13:51:31 by tbaker           ###   ########.fr       */
+/*   Created: 2025/02/16 00:19:29 by jeschill          #+#    #+#             */
+/*   Updated: 2025/02/16 10:56:13 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
-#include "testing.h"
-#include "../../libft/libft.h"
-//Remember to remove.
-#include <string.h>
+#include ""
 
-///@Brief:
-///@To_do: When gotten the chance, replace strcat with libft ft_strjoin.
 
 char	*ft_get_path(char *cmd)
 {
@@ -51,11 +42,8 @@ void	ft_execvp(char **cmd, char **envp)
 	char *path;
 
 	path = ft_get_path(cmd[0]);
-	printf("%s\n", path);//----------------------------------------remove for test only
 	if (execve(path, cmd, envp) == -1)
-	{
 		exit(1);
-	}
 }
 
 
@@ -109,19 +97,25 @@ void	ft_pipe_central(char ***cmd, char **envp)
 		}
 	}
 }
-/*
-int	main(int argc, char **argv, char **envp)
-{
-	(void)argc;
-	(void)argv;
-//	char *cat[] = {"cat", "-e",NULL};
-	char *wc[] = {"wc", "-c", NULL};
-	char *ls[] = {"ls", NULL};
-//	char **cmd[] = {ls, wc, cat, NULL};
-	char **cmd[] = {ls, wc, NULL};
 
-	ft_pipe_central(cmd, envp);
-	return (0);
+int	exec_bin(char **cmd, char **envp)
+{
+	ft_execvp(cmd, envp);
 }
-*/
+
+///@Brief:	Executes cmd, either buitltin or bin.
+///@To_do:	
+///@Notes:	
+void	exec_cmd(t_data *data, t_node *node, char **envp)
+{
+	if (cmd && is_it_builtin(node->cmd[0]))
+		data->ret = exec_builtins(node->cmd, data);
+	else if (cmd)
+		data->ret = exec_bin(node->cmd, data, envp); //Include env;
+	ft_close(data->pipe_in);
+	ft_close(data->pipe_out);
+	data->pipe_in = -1;
+	data->pipe_out = -1;
+}
+
 
