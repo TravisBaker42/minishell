@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/04 18:48:10 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/12 00:13:27 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,6 @@ typedef enum e_token {
 //	May incorporate into main struct for easier access.
 //	system default fd, opened file fd, pipe fd. is it a Parent process?
 //	To be expanded? Honestly anything that needs to be tracked in int.
-typedef	struct	s_fd_tracker
-{
-	int	in;
-	int	out;
-	int	fd_in;
-	int fd_out;
-	int	pipe_in;
-	int pipe_out;
-	int	pid;
-	int	is_parent;
-}
 
 typedef struct	s_token_list
 {
@@ -74,6 +63,7 @@ typedef struct	s_cmd_list
 	char				**cmds;
 	t_token				token_type;
 	struct s_cmd_list	*next;
+	struct s_cmd_list	*prev;
 } t_cmd_list;
 
 typedef struct	s_env_lst
@@ -95,7 +85,16 @@ typedef struct	s_data
 	t_cmd_list		*cmd_list;
 	t_lvl_lst		*lvl_lst;
 	char			**envp;
-
+	int	in;
+	int	out;
+	int	fd_in;
+	int fd_out;
+	int	pipe_in;
+	int pipe_out;
+	int	pid;
+	int	is_parent;
+	int ret;
+	int	no_exec;
 } t_data;
 
 /* ************************************************************************** */
