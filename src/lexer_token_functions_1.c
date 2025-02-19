@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:05:20 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:32:13 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:21:18 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 /// @breif Tokenizes ( ) and return the iterator to the next char input 
 ///
 /// @todo
+/*
 int	ft_brackets(t_token_list **head_token, const char *input, int i)
 {
 	if (input[i] == '(')
@@ -25,6 +26,7 @@ int	ft_brackets(t_token_list **head_token, const char *input, int i)
 		ft_new_token_node(head_token, C_BRACKET, ft_strdup("("));
 	return (1);
 }
+*/
 
 /// @breif Tokenizes >> > << < and return the iterator to the next char input 
 ///
@@ -35,11 +37,11 @@ int	ft_greater_lesser(t_token_list **head_token, const char *input, int i)
 	{
 		if (input[i + 1] == '>')
 		{
-			ft_new_token_node(head_token, GREATER_GREATER, ft_strdup(">>"));
+			ft_new_token_node(head_token, APPEND, ft_strdup(">>"));
 			return (2);
 		}
 		else
-			ft_new_token_node(head_token, GREATER, ft_strdup(">"));
+			ft_new_token_node(head_token, TRUNC, ft_strdup(">"));
 	}
 	else
 	{
@@ -49,7 +51,7 @@ int	ft_greater_lesser(t_token_list **head_token, const char *input, int i)
 			return (2);
 		}
 		else
-			ft_new_token_node(head_token, LESSER, ft_strdup("<"));
+			ft_new_token_node(head_token, INPUT, ft_strdup("<"));
 	}
 	return (1);
 }

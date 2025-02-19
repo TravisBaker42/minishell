@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 14:17:49 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 18:14:06 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
-
+/*
 void	ft_test_print_cmd_list(t_data *data)
 {
 	int			i;
@@ -57,7 +57,7 @@ void	ft_test_env(t_lvl_lst *current_shell)
 	}
 	printf("test complete\n");
 }
-
+*/
 void	ft_free_malloc(t_data *data)
 {
 	if (data->cmd_list)
@@ -75,7 +75,8 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 	input = argv[1];
 	data->token = ft_lexer(input);
 	ft_parser(data);	
-	ft_test_print_cmd_list(data);
+	ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
+	//ft_test_print_cmd_list(data);
 	printf("end of test for cmd list\n");
 
 /*	int i;
@@ -103,14 +104,14 @@ void	ft_interactive(t_data *data)
 		add_history(input);//one fucking line for cml history
 		data->token = ft_lexer(input);
 		ft_parser(data);	
-		ft_test_print_cmd_list(data);//remove for testing
-		ft_init_env(data); //initalise intial shell lvl varaibles
-		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
+//		ft_test_print_cmd_list(data);//remove for testing
+//		ft_init_env(data); //initalise intial shell lvl varaibles
+//		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
 									// need to test for mulitipule shells 
 									// need to build control statement to catch 
 									// "./minishell" then call ft_init_lvl
 									// and dup current env_lst to a new lvl_lst node
-		ft_executor(data);//need to free data for cmd_list and token_list 
+		ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
 		ft_free_malloc(data);
 		free (input);
 	}
@@ -122,11 +123,23 @@ void	ft_interactive(t_data *data)
 /// are command line vars required does it require env path || just use getenv("PATH")
 /// Need to remove printf used for libft testing <------------------------------------------
 
+void	ft_init_data(t_data *data, char **envp)
+{
+	data->envp = envp;
+	data->in = dup(STDIN_FILENO);
+	data->out = dup(STDOUT_FILENO);
+	data->fd_in = -1;
+	data->fd_out = -1;
+	data->pipe_in = -1;
+	data->pipe_out = -1;
+	data->no_exec = 0;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data data;
 
-	data.envp = envp;
+	ft_init_data(&data, envp);
 	if (argc == 1)
 	{
 		ft_interactive(&data);

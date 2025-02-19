@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/16 12:55:44 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 17:10:35 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,17 @@
 //we gotta rename these bad boys to what they do. Mainly Greater_Greater down to LESSER.
 typedef enum e_token {
 	PIPE = 1,
-	GREATER_GREATER,
-	GREATER,
-	LESSER_LESSER,
-	LESSER,
-	D_QUOTE,
-	S_QUOTE,
-	O_BRACKET,
-	C_BRACKET,
+	TRUNC,//>
+	APPEND,//>>
+	LESSER_LESSER,//<< still needs function built
+	INPUT,//<
 	WORD,
 	TOKEN_EOF,
-
 } t_token;
 
 /* ************************************************************************** */
 /*								STRUCTS										  */
 /* ************************************************************************** */
-
-//	May incorporate into main struct for easier access.
-//	system default fd, opened file fd, pipe fd. is it a Parent process?
-//	To be expanded? Honestly anything that needs to be tracked in int.
-/*typedef	struct	s_fd_tracker
-{
-	int	in;
-	int	out;
-	int	fd_in;
-	int fd_out;
-	int	pipe_in;
-	int pipe_out;
-	int	pid;
-	int	is_parent;
-}*/
 
 typedef struct	s_token_list
 {
@@ -83,6 +63,7 @@ typedef struct	s_env_lst
 	struct s_env_lst	*next;
 }	t_env_lst;
 
+// not sure if still relevant
 typedef struct s_lvl_lst
 {
 	int					lvl;
@@ -90,6 +71,7 @@ typedef struct s_lvl_lst
 	struct s_lvl_lst	*next;
 }	t_lvl_lst;
 
+//need to init the int in down for the data struct
 typedef struct	s_data
 {
 	t_token_list	*token;
@@ -114,6 +96,7 @@ typedef struct	s_data
 
 // minishell.c //will move into utils or something
 void			ft_free_malloc(t_data *data);
+void			ft_init_data(t_data *data, char **envp);
 
 // ft_env_lst.c
 void			ft_free_env_lst(t_env_lst **env_token);
@@ -167,7 +150,32 @@ char			*ft_return_d_qoutes(const char *input, int start, int end);
 // utils.c
 int				ft_iterates_space(const char *input, int i);
 void			ft_freetabs(char **tab);
+void			ft_close(int fd);
 
+//excutor.c
+int				ft_type_id(t_cmd_list *node, t_token token);
+t_cmd_list		*ft_next_sep(t_cmd_list *origin);
+t_cmd_list		*ft_prev_sep(t_cmd_list *origin);
+void			ft_executor(t_data *data, t_cmd_list *cmd, char **envp);
+
+//redir.c
+void			ft_redir(t_data *data, t_cmd_list *node, int token);
+void			ft_input(t_data *data, t_cmd_list *node, int token);
+int				ft_quick_pipe(t_data *data);
+
+//builtins.c
+int				ft_is_it_builtin(char *cmd);
+int				ft_exec_builtins(char **cmd, t_data *data);
+
+//cmd_exe.c
+char			*ft_get_path(char *cmd);
+void			ft_execvp(char **cmd, char **envp);
+int				ft_exec_bin(char **cmd, char **envp);
+void			ft_exec_cmd(t_data *data, t_cmd_list *node, char **envp);//may change cmd_list back to node
+
+
+
+/*
 // ft_pipe_central.c
 char			*ft_get_path(char *cmd);
 void			ft_execvp(char **cmd, char **envp);
@@ -177,6 +185,7 @@ void			ft_pipe_central(t_cmd_list *cmd_list, char **envp);
 
 // ft_executor.c
 void			ft_executor(t_data *data);
+*/
 
 /*
 void			ft_pipe_central(char ***cmd, char **envp);
@@ -188,6 +197,6 @@ char			*get_path(char *cmd);
 
 
 // Buitins:
-int				ft_pwd(void);
+//int				ft_pwd(void);
 
 #endif

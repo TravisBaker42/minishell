@@ -3,38 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 15:22:33 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:03 by tbaker           ###   ########.fr       */
+/*   Created: 2024/12/21 14:03:24 by jeschill          #+#    #+#             */
+/*   Updated: 2025/02/19 16:31:12 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
-///	@brief iterates i while input == space or tab and returns i
-///	space == 32 and tab == 9
-///
-///	@prama i: current position in the string
-///	@prama input: command line input string
-int	ft_iterates_space(const	char *input, int i)
+#include "../libft/libft.h"
+
+///@Brief:	Used to close fds.
+///@To_do:	
+///@Notes:	We do this because on first run we have the potential of closing STDIN.
+void	ft_close(int fd)
 {
-	while ((input[i] == 32 || input[i] == 9) && input[i] != '\0')
-		i++;
-	return (i);
+	if (fd > 0)
+		close(fd);
 }
 
-void	ft_freetabs(char **tab)
+void	ft_freetabs(char **tabs)
 {
-		int i;
+	int	i;
 
-		i = 0;
-		while (tab[i])
+	i = 0;
+	while (tabs[i])
+	{
+		if (tabs[i])
 		{
-			if (tab[i])
-				free(tab[i]);
-			i++;
+			free(tabs[i]);
+			tabs[i] = NULL;
 		}
-		if (tab)
-			free(tab);
+		i++;
+	}
+	if (tabs)
+	{
+		free(tabs);
+		tabs = NULL;
+	}
+}
+
+int	ft_iterates_space(const char *input, int i)
+{
+	while((input[i] == 32 || input[i] == 9) && input[i] != '\0')
+		i++;
+	return (i);
 }

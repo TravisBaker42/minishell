@@ -6,15 +6,68 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 13:30:14 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 18:33:32 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "minishell.h"
+#include <stdio.h>//???
 #include <stdlib.h>
-#include "testing.h"
-#include "lib/libft/libft.h"
+#include "../libft/libft.h"
 
+int	ft_type_id(t_cmd_list *node, t_token token)
+{
+	if (node && node->token_type == token)
+		return (1);
+	else
+		return (0);
+}
+
+t_cmd_list	*ft_next_sep(t_cmd_list *origin)
+{
+	while (origin && origin->token_type == WORD)
+		origin = origin->next;
+	return (origin);
+}
+
+t_cmd_list	*ft_prev_sep(t_cmd_list *origin)
+{
+	while (origin && origin->token_type == WORD)
+		origin = origin->prev;
+	return (origin);
+}
+
+void	ft_executor(t_data *data, t_cmd_list *cmd, char **envp)
+{
+	t_cmd_list	*next;
+	t_cmd_list	*prev;
+	int			pip_child;
+	
+	pip_child = 0;
+	next = ft_next_sep(cmd); //Finds next seperator.
+	prev = ft_prev_sep(cmd); //Finds prev seperator.
+	//redirect						 //
+	if (ft_type_id(prev, TRUNC))
+		ft_redir(data, cmd, TRUNC);
+	else if (ft_type_id(prev, APPEND))
+		ft_redir(data, cmd, APPEND);
+	else if (ft_type_id(prev, INPUT))
+		ft_input(data, cmd, INPUT);
+	//pipe
+	else if (ft_type_id(prev, PIPE))
+		pip_child = ft_quick_pipe(data);
+	//if next not null and not EOF 
+	if (next && ft_type_id(next, TOKEN_EOF) == 0 && pip_child != 1)
+//	if (next && ft_type_id(next, TOKEN_EOF) == 0 && pip_child == 2 )
+		ft_executor(data, next->next, envp);
+	//if i only use just "ls" it will drop in here send the only process to ft_exe_cmd
+	//calls ft_execve and close the program i think we need a parent to stay alive
+	//i think we need to fork the first cmd regardless of a pipe to keep the program 
+	//run after execution of the cmd	
+	if ((ft_type_id(prev, PIPE) || !prev) && pip_child != 1 && data->no_exec == 0)
+//	if ((ft_type_id(prev, PIPE) || !prev) && pip_child == 2)
+		ft_exec_cmd(data, cmd, envp);
+}
 //	char *cat[] = {"cat", "-e",NULL};
 //	char *wc[] = {"wc", "-c", NULL};
 //	char *ls[] = {"ls", NULL};
@@ -136,6 +189,7 @@ t_node	*create_node(int tk_type, char **cmd)
 ///			Include FD and STDIN/OUT sanitization after CMD is finished in function that calls executor
 ///@Notes;	What if we make token type an int and define in header?
 //void	executor(t_data *data, t_node *cmd, char **envp)
+/*
 void	executor(t_data *data)
 {
 	t_node	*next;
@@ -158,7 +212,7 @@ void	executor(t_data *data)
 	if ((type_id(prev, PIPE) || !prev) && pip_child != 1 && data->no_exec == 0)
 		exec_cmd(data, cmd, envp);
 }
-/*
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;

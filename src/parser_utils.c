@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:07:30 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 13:57:09 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 13:19:06 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	ft_cmd_list_add_back(t_cmd_list **head_cmd, t_cmd_list *new_node)
 	else
 	{
 		temp_cmd_list = *head_cmd;
-		//while(temp_cmd_list->next)
 		while(temp_cmd_list->next)
 			temp_cmd_list = temp_cmd_list->next;
 		temp_cmd_list->next = new_node;
+		new_node->prev = temp_cmd_list;
 	}
 }
 
@@ -40,6 +40,7 @@ t_cmd_list	*ft_new_cmd_list(char **cmds, t_token token_type)
 	new_cmd_node->token_type = token_type;
 	new_cmd_node->cmds = cmds;
 	new_cmd_node->next = NULL;
+	new_cmd_node->prev = NULL;
 	return (new_cmd_node);
 }
 

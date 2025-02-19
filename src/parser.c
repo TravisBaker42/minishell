@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:41:26 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/16 13:14:58 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:38:29 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *to
 	if (len > 0) //so it dose not create for when only <= lesser is pasted
 		ft_new_cmd_token_node(&data->cmd_list, cmds, token_type);
 	//	adds pipe or redirect between words
-	if (token_current->token_type <= LESSER)
+	if (token_current->token_type <= INPUT)
 		// when free the NULL cmds in the cmd_lst if the pipes and redirects can double free maybe 
 		ft_new_cmd_token_node(&data->cmd_list, NULL, token_current->token_type);
 }	
@@ -56,7 +56,7 @@ char	**ft_copy_token_value(t_data *data, t_token_list **token_start, int len)
 		*token_start = (*token_start)->next;
 		i++;
 	}
-	if ((*token_start)->token_type <= LESSER)
+	if ((*token_start)->token_type <= INPUT)
 		*token_start = (*token_start)->next;
 	cmds[len] = NULL;
 	return (cmds);
@@ -75,7 +75,7 @@ void	ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list
 	{
 		if(token_current->token_type == WORD)
 			i++;
-		if(token_current->token_type <= LESSER || token_current->next->token_type == TOKEN_EOF) //change to <= LESSER for delimetor
+		if(token_current->token_type <= INPUT || token_current->next->token_type == TOKEN_EOF) //change to <= LESSER for delimetor
 		{
 			ft_init_cmd_list(data, &token_start, token_current, i);
 			i = 0;

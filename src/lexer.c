@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:36:51 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:33:25 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:17:54 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 		i = ft_iterates_space(input, i);
 		if (input[i] == '|')
 			i += ft_pipe(head_token, ft_strdup("|"));
-		else if (input[i] == '(' || input[i] == ')')
-			i += ft_brackets(head_token, input, i);
+//		else if (input[i] == '(' || input[i] == ')')
+//			i += ft_brackets(head_token, input, i);
 		else if (input[i] == '>' || input[i] == '<')
 			i += ft_greater_lesser(head_token, input, i);
-		else if (input[i] == '\"')
-			i = ft_d_qoutes(head_token, input, i);
+//		else if (input[i] == '\"')
+//			i = ft_d_qoutes(head_token, input, i);
 		else
 			i = ft_word(head_token, input, i);
 	}

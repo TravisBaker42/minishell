@@ -13,10 +13,13 @@ CFLAGS		:= 	-Wall -Wextra -Werror -g
 LDFLAGS		:= 	-lreadline 
 RM			:= 	rm -rf
 
+##B_DIR		:=	$(SRC_DIR)/builtins
+
 SRC_DIR		:= 	src
 SRC_FILES	:= 	minishell.c lexer.c lexer_utils.c utils.c lexer_token_functions_1.c \
-				lexer_token_functions_2.c parser.c parser_utils.c ft_pipe_central.c \
-				ft_executor.c ft_init_env.c ft_env_lst.c
+				lexer_token_functions_2.c parser.c parser_utils.c cmd_exec.c \
+				executor.c ft_init_env.c ft_env_lst.c redir.c builtins.c \
+
 SRC			:= 	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 BUILD_DIR	:= 	build

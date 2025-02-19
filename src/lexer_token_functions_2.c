@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:30:02 by tbaker            #+#    #+#             */
-/*   Updated: 2024/12/21 15:30:49 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/19 16:32:12 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /// @breif Tokenizes 
 ///
 /// @todo
+/*
 char	*ft_return_d_qoutes(const char *input, int start, int end)
 {
 	char	*string;
@@ -38,10 +39,12 @@ char	*ft_return_d_qoutes(const char *input, int start, int end)
 	string[i] = '\0';
 	return (string);
 }
+*/
 
 /// @breif Tokenizes 
 ///
 /// @todo
+/*
 int	ft_d_qoutes(t_token_list **head_token, const char *input, int i)
 {
 	char	*token_value;
@@ -63,4 +66,4 @@ int	ft_d_qoutes(t_token_list **head_token, const char *input, int i)
 		printf("need to add function for unclosed double quotes\n");
 		return (i);
 	}
-}
+}*/
