@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/16 15:06:41 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/16 15:51:57 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	char *ls[] = {"ls", NULL};
-	char *wc[] = {"wc", "-c", NULL};
-	char *cat[] = {"cat", "-e",NULL};
+//	char *wc[] = {"wc", "-c", NULL};
+	char *cat[] = {"cat", NULL};
+	//char *cat[] = {"cat", "-e",NULL};
 	char *pipe[] = {"|", NULL};
 //	char **cmd[] = {ls, pipe, wc, pipe, cat, NULL};
 
@@ -171,11 +172,11 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	data.in = dup(STDIN_FILENO);
 	data.out = dup(STDOUT_FILENO);
-	t_node	*start = create_node(0, ls);
+	t_node	*start = create_node(0, cat);
 	t_node	*pipe1 = create_node(4, pipe);
-	t_node	*cmd2 = create_node(0, wc);
+	t_node	*cmd2 = create_node(0, cat);
 	t_node	*pipe2 = create_node(4, pipe);
-	t_node	*cmd3 = create_node(0, cat);
+	t_node	*cmd3 = create_node(0, ls);
 
 	start->prev = NULL;
 	start->next = pipe1;
