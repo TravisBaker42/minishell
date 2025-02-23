@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/19 17:10:35 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/23 15:13:10 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum e_token {
 	LESSER_LESSER,//<< still needs function built
 	INPUT,//<
 	WORD,
+	SPACE,
 	TOKEN_EOF,
 } t_token;
 
@@ -136,19 +137,21 @@ void			ft_new_token_node(t_token_list **head_token, t_token token_type, char *to
 void			ft_test_print_list(t_token_list **head_token); // <<-----------------------remove only 4 testing
 void			ft_free_token_list(t_token_list **tokens);
 
-// lexer_token_functions.c
+// lexer_token_functions_1.c
 int				ft_pipe(t_token_list **head_token, char *token_value);
 int				ft_word(t_token_list **head_token, const char *input, int i);
-int				ft_brackets(t_token_list **head_token, const char *input, int i);
+int				ft_space(t_token_list **head_token, const char *input, int i);
 int				ft_greater_lesser(t_token_list **head_token, const char *input, int i);
 char			*ft_return_word(const char *input, int start, int end);
 
-// lexer_token_functions.c
-int				ft_d_qoutes(t_token_list **head_token, const char *input, int i);
-char			*ft_return_d_qoutes(const char *input, int start, int end);
+// lexer_token_functions_2.c
+int				ft_d_quotes(t_token_list **head_token, const char *input, int i);
+char			*ft_return_d_quotes(const char *input, int start, int end);
+int				ft_s_quotes(t_token_list **head_token, const char *input, int i);
+char			*ft_return_s_quotes(const char *input, int start, int end);
+int				ft_quotes(t_token_list **head_token, const char *input, int i);
 
 // utils.c
-int				ft_iterates_space(const char *input, int i);
 void			ft_freetabs(char **tab);
 void			ft_close(int fd);
 
