@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/23 15:13:10 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/24 14:45:03 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ void			ft_lvl_lst_add_start(t_lvl_lst **head_lvl, t_lvl_lst *new_node);
 t_lvl_lst		*ft_new_lvl_lst(int lvl, t_env_lst *env_lst);
 
 // parser.c
-void			ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int len);
-char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int len);
+void			ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int cmd_len);
+char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int cmd_len);
 void			ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list *token_current);
 void			ft_parser(t_data *data);
 

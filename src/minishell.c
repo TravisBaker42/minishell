@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/23 18:08:52 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/24 16:10:24 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,14 @@ void	ft_test_print_cmd_list(t_data *data)
 	while (print_cmds)
 	{
 		i = 0;
-		if(print_cmds->cmds == NULL)
+		printf("token_type = %d\n", print_cmds->token_type);
+		while(print_cmds->cmds[i])
 		{
-			printf("token_type = %d\n", print_cmds->token_type);
+			printf("%s ", print_cmds->cmds[i]);
+			i++;
 		}
-		else
-		{
-			while(print_cmds->cmds[i])
-			{
-				printf("%s ", print_cmds->cmds[i]);
-				i++;
-			}
-			printf("\n");
-		}
-		print_cmds = print_cmds->next;
+		printf("\n");
+	print_cmds = print_cmds->next;
 	}
 	printf("test complete\n\n\n\n");
 }
@@ -78,7 +72,7 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 	data->token = ft_lexer(input);
 	ft_parser(data);	
 	ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
-	//ft_test_print_cmd_list(data);
+//	ft_test_print_cmd_list(data);
 	printf("end of test for cmd list\n");
 
 /*	int i;
@@ -98,7 +92,7 @@ void	ft_interactive(t_data *data)
 {
 	char *prompt;
 	char *input;
-//	int		status;//added for waitpid
+	int		status;//added for waitpid
 
 	prompt = "\033[1;36mMinishell prompt$ \033[0m";
 	while (42)
@@ -108,9 +102,9 @@ void	ft_interactive(t_data *data)
 		data->token = ft_lexer(input);
 //		ft_test_print_list(&data->token);
 		ft_parser(data);	
-		ft_test_print_cmd_list(data);//remove fpr testing
+//		ft_test_print_cmd_list(data);//remove fpr testing
 
-		/*
+		
 		data->pid = fork();//added to fix prompting
 //		ft_test_print_cmd_list(data);//remove for testing
 //		ft_init_env(data); //initalise intial shell lvl varaibles
@@ -123,7 +117,6 @@ void	ft_interactive(t_data *data)
 			ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
 		else//added to fix prompting
 			waitpid(data->pid, &status, 0);//added to fix prompting
-										   */
 		ft_free_malloc(data);
 		free (input);
 	}
