@@ -6,12 +6,13 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:28:54 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 17:42:09 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/21 13:30:33 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "../libft/libft.h"
+#include <stdio.h> //Testing
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -31,9 +32,15 @@ void	ft_redir(t_data *data, t_cmd_list *node, int token)
 	ft_close(data->fd_out);//Include struct pathing in future. //This is done to ensure previously
 				  //opened fd for outputs is properly closed before using.
 	if (token == TRUNC) //Adjust in future for better readability
-		data->fd_out = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU); //Include Pathing for file_str in future;
+	{
+		printf("TRUNC is invoked");
+		data->fd_out = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	}
 	else if (token == APPEND) //Also gotta adjust this for future.
-		data->fd_out = open(str, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU); //Include Pathing for file_str in Future;
+	{
+		printf("APPEND is invoked");
+		data->fd_out = open(str, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
+	}
 	if (data->fd_out == -1)
 	{
 		//error handling.
@@ -76,7 +83,7 @@ int	ft_quick_pipe(t_data *data)
 {
 	pid_t	pid;
 	int		p_fd[2];
-	int		status;//added for waitpid
+	//int		status;//added for waitpid
 
 	pipe(p_fd);
 	pid = fork();
@@ -93,7 +100,7 @@ int	ft_quick_pipe(t_data *data)
 		ft_close(p_fd[0]);
 		dup2(p_fd[1], STDOUT_FILENO);
 		data->pipe_out = p_fd[1];
-		waitpid(pid, &status, 0);
+		//waitpid(pid, &status, 0);
 		return (1);
 	}
 }

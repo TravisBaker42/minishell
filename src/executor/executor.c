@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 13:30:14 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/21 13:58:53 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct s_node
 	struct	t_node	next;
 	struct	t_node	prev;
 }	t_node;
-
-********************Testing node creation****************
+*/
+//********************Testing node creation****************//
 char	**dup_cmd(char **cmd)
 {	
 	char	**new_cmd;
@@ -103,8 +103,8 @@ char	**dup_cmd(char **cmd)
 	new_cmd[i] = NULL;
 	return (new_cmd);
 }
-*/
-/*
+
+
 t_node	*create_node(int tk_type, char **cmd)
 {
 	t_node	*new;
@@ -120,7 +120,7 @@ t_node	*create_node(int tk_type, char **cmd)
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
-}*/
+}
 //********************Testing node creation****************//
 
 ///@Brief: 	Execution flow chart: 
@@ -135,8 +135,7 @@ t_node	*create_node(int tk_type, char **cmd)
 ///@To_do:	Shorten some list names.
 ///			Include FD and STDIN/OUT sanitization after CMD is finished in function that calls executor
 ///@Notes;	What if we make token type an int and define in header?
-//void	executor(t_data *data, t_node *cmd, char **envp)
-void	executor(t_data *data)
+void	executor(t_data *data, t_node *cmd, char **envp)
 {
 	t_node	*next;
 	t_node	*prev;
@@ -158,26 +157,25 @@ void	executor(t_data *data)
 	if ((type_id(prev, PIPE) || !prev) && pip_child != 1 && data->no_exec == 0)
 		exec_cmd(data, cmd, envp);
 }
-/*
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	char *ls[] = {"ls", NULL};
-//	char *wc[] = {"wc", "-c", NULL};
-	char *cat[] = {"cat", NULL};
-	//char *cat[] = {"cat", "-e",NULL};
+	char *wc[] = {"wc", "-c", NULL};
+	char *cat[] = {"cat", "-e",NULL};
 	char *pipe[] = {"|", NULL};
-//	char **cmd[] = {ls, pipe, wc, pipe, cat, NULL};
+	//char **cmd[] = {ls, pipe, wc, pipe, cat, NULL};
 
 	(void)argc;
 	(void)argv;
 	data.in = dup(STDIN_FILENO);
 	data.out = dup(STDOUT_FILENO);
-	t_node	*start = create_node(0, cat);
+	t_node	*start = create_node(0, ls);
 	t_node	*pipe1 = create_node(4, pipe);
-	t_node	*cmd2 = create_node(0, cat);
+	t_node	*cmd2 = create_node(0, wc);
 	t_node	*pipe2 = create_node(4, pipe);
-	t_node	*cmd3 = create_node(0, ls);
+	t_node	*cmd3 = create_node(0, cat);
 
 	start->prev = NULL;
 	start->next = pipe1;
@@ -198,4 +196,4 @@ int	main(int argc, char **argv, char **envp)
 	data.pipe_out = -1;
 	executor(&data, data.start, envp);
 	return (0);
-}*/
+}

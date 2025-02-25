@@ -6,7 +6,7 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 00:19:29 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 17:24:07 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/21 13:16:16 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ int	ft_exec_bin(char **cmd, char **envp)
 ///@Notes:	
 void	ft_exec_cmd(t_data *data, t_cmd_list *node, char **envp)
 {
-	if (node->cmds && ft_is_it_builtin(node->cmds[0]))
+	/*if (node->cmds && ft_is_it_builtin(node->cmds[0]))
 		data->ret = ft_exec_builtins(node->cmds, data);
-	else if (node->cmds)
+	*/
+	if (node->cmds)
 		data->ret = ft_exec_bin(node->cmds, envp); //Include env;
 	ft_close(data->pipe_in);
 	ft_close(data->pipe_out);
