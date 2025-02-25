@@ -6,7 +6,7 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:28:54 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/21 13:30:33 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/25 20:50:54 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,15 @@ void	ft_redir(t_data *data, t_cmd_list *node, int token)
 	ft_close(data->fd_out);//Include struct pathing in future. //This is done to ensure previously
 				  //opened fd for outputs is properly closed before using.
 	if (token == TRUNC) //Adjust in future for better readability
-	{
-		printf("TRUNC is invoked");
 		data->fd_out = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
-	}
 	else if (token == APPEND) //Also gotta adjust this for future.
-	{
-		printf("APPEND is invoked");
 		data->fd_out = open(str, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
-	}
 	if (data->fd_out == -1)
 	{
 		//error handling.
 		//Should mimic bash error and output to std_err.
 		ft_putstr_fd(str, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory", STDERR_FILENO);
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		data->no_exec = 1;
 		return ;
 	}
@@ -56,11 +50,10 @@ void	ft_redir(t_data *data, t_cmd_list *node, int token)
 ///@Brief:	Handles input redirection. ie "<".
 ///@To_do:	Pretty much everything above.
 ///@Notes:	Example usage: sort < input.txt  //Equivalent to: cat input.txt | sort
-void	ft_input(t_data *data, t_cmd_list *node, int token)
+void	ft_input(t_data *data, t_cmd_list *node)
 {
 	char *str;
 
-	(void) token;//?
 	str = node->cmds[0];
 	ft_close(data->fd_in);
 	data->fd_in = open(str, O_RDONLY, S_IRWXU);
@@ -69,7 +62,7 @@ void	ft_input(t_data *data, t_cmd_list *node, int token)
 		//error handling.
 		//Should mimic bash error and output to std_err.
 		ft_putstr_fd(str, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory", STDERR_FILENO);
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		data->no_exec = 1;
 		return ;
 	}

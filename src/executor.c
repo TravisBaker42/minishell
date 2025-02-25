@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 18:33:32 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/25 20:50:24 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_executor(t_data *data, t_cmd_list *cmd, char **envp)
 	else if (ft_type_id(prev, APPEND))
 		ft_redir(data, cmd, APPEND);
 	else if (ft_type_id(prev, INPUT))
-		ft_input(data, cmd, INPUT);
+		ft_input(data, cmd);
 	//pipe
 	else if (ft_type_id(prev, PIPE))
 		pip_child = ft_quick_pipe(data);

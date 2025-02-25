@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/19 17:10:35 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/25 20:51:21 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,9 @@ char			*ft_return_d_qoutes(const char *input, int start, int end);
 int				ft_iterates_space(const char *input, int i);
 void			ft_freetabs(char **tab);
 void			ft_close(int fd);
+void			ft_reset_std(t_data *data);
+void			ft_close_fds(t_data *data);
+void			ft_reset_fds(t_data *data);
 
 //excutor.c
 int				ft_type_id(t_cmd_list *node, t_token token);
@@ -160,7 +163,7 @@ void			ft_executor(t_data *data, t_cmd_list *cmd, char **envp);
 
 //redir.c
 void			ft_redir(t_data *data, t_cmd_list *node, int token);
-void			ft_input(t_data *data, t_cmd_list *node, int token);
+void			ft_input(t_data *data, t_cmd_list *node);
 int				ft_quick_pipe(t_data *data);
 
 //builtins.c

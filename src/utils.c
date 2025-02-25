@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:03:24 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/19 16:31:12 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/25 20:30:14 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,29 @@ void	ft_close(int fd)
 	if (fd > 0)
 		close(fd);
 }
+
+void	ft_reset_std(t_data *data)
+{
+	data->in = dup(STDIN_FILENO);
+	data->out = dup(STDOUT_FILENO);
+}
+
+void	ft_close_fds(t_data *data)
+{
+	ft_close(data->fd_in);
+	ft_close(data->fd_out);
+	ft_close(data->pipe_in);
+	ft_close(data->pipe_out);
+}
+
+void	ft_reset_fds(t_data *data)
+{
+	data->fd_in = -1;
+	data->fd_out = -1;
+	data->pipe_in = -1;
+	data->pipe_out = -1;
+}
+
 
 void	ft_freetabs(char **tabs)
 {

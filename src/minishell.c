@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/19 18:14:06 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/25 20:16:04 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ void	ft_interactive(t_data *data)
 									// need to build control statement to catch 
 									// "./minishell" then call ft_init_lvl
 									// and dup current env_lst to a new lvl_lst node
-		ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
+		ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list
+		ft_reset_std(data);			//Resets std_in and std_out.
+		ft_close_fds(data);			//Closes opened fds: fd_in, fd_out, pipe_in, pipe_out.
+		ft_reset_fds(data);			//Resets above values to -1.
 		ft_free_malloc(data);
 		free (input);
 	}
