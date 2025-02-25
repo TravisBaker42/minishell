@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/25 20:51:21 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:08:30 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum e_token {
 	LESSER_LESSER,//<< still needs function built
 	INPUT,//<
 	WORD,
+	SPACE,
 	TOKEN_EOF,
 } t_token;
 
@@ -114,8 +115,8 @@ void			ft_lvl_lst_add_start(t_lvl_lst **head_lvl, t_lvl_lst *new_node);
 t_lvl_lst		*ft_new_lvl_lst(int lvl, t_env_lst *env_lst);
 
 // parser.c
-void			ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int len);
-char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int len);
+void			ft_init_cmd_list(t_data *data, t_token_list **token_start, t_token_list *token_current, int cmd_len);
+char			**ft_copy_token_value(t_data *data, t_token_list **token_start, int cmd_len);
 void			ft_create_cmds_arrays(t_data *data, t_token_list *token_start, t_token_list *token_current);
 void			ft_parser(t_data *data);
 
@@ -136,19 +137,21 @@ void			ft_new_token_node(t_token_list **head_token, t_token token_type, char *to
 void			ft_test_print_list(t_token_list **head_token); // <<-----------------------remove only 4 testing
 void			ft_free_token_list(t_token_list **tokens);
 
-// lexer_token_functions.c
+// lexer_token_functions_1.c
 int				ft_pipe(t_token_list **head_token, char *token_value);
 int				ft_word(t_token_list **head_token, const char *input, int i);
-int				ft_brackets(t_token_list **head_token, const char *input, int i);
+int				ft_space(t_token_list **head_token, const char *input, int i);
 int				ft_greater_lesser(t_token_list **head_token, const char *input, int i);
 char			*ft_return_word(const char *input, int start, int end);
 
-// lexer_token_functions.c
-int				ft_d_qoutes(t_token_list **head_token, const char *input, int i);
-char			*ft_return_d_qoutes(const char *input, int start, int end);
+// lexer_token_functions_2.c
+int				ft_d_quotes(t_token_list **head_token, const char *input, int i);
+char			*ft_return_d_quotes(const char *input, int start, int end);
+int				ft_s_quotes(t_token_list **head_token, const char *input, int i);
+char			*ft_return_s_quotes(const char *input, int start, int end);
+int				ft_quotes(t_token_list **head_token, const char *input, int i);
 
 // utils.c
-int				ft_iterates_space(const char *input, int i);
 void			ft_freetabs(char **tab);
 void			ft_close(int fd);
 void			ft_reset_std(t_data *data);

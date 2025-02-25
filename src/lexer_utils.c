@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:23:42 by tbaker            #+#    #+#             */
-/*   Updated: 2025/01/15 14:03:30 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/23 15:27:05 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	ft_test_print_list(t_token_list **head_token)
 		i++;
 		temp_token_list = temp_token_list->next;
 	}
-	printf("list finished need to added conditiions for quotes and $args\n");
-	printf("The linked list needs to be parsed into a use data type for the executer, token type 1 = PIPE and 2 = WORD\n");
+	//printf("list finished need to added conditiions for quotes and $args\n");
+	//printf("The linked list needs to be parsed into a use data type for the executer, token type 1 = PIPE and 2 = WORD\n");
 }

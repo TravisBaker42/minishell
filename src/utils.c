@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:03:24 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/25 20:30:14 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:10:49 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,4 @@ void	ft_freetabs(char **tabs)
 		free(tabs);
 		tabs = NULL;
 	}
-}
-
-int	ft_iterates_space(const char *input, int i)
-{
-	while((input[i] == 32 || input[i] == 9) && input[i] != '\0')
-		i++;
-	return (i);
 }

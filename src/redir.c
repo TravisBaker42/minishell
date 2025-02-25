@@ -6,7 +6,7 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:28:54 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/25 20:50:54 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:10:26 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	ft_quick_pipe(t_data *data)
 {
 	pid_t	pid;
 	int		p_fd[2];
-	//int		status;//added for waitpid
 
 	pipe(p_fd);
 	pid = fork();
@@ -93,7 +92,6 @@ int	ft_quick_pipe(t_data *data)
 		ft_close(p_fd[0]);
 		dup2(p_fd[1], STDOUT_FILENO);
 		data->pipe_out = p_fd[1];
-		//waitpid(pid, &status, 0);
 		return (1);
 	}
 }

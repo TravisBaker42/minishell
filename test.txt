@@ -1,0 +1,8 @@
+build
+include
+libft
+Makefile
+minishell
+README.md
+src
+test.txt
