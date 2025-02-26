@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/24 14:45:03 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:17:15 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct	s_data
 {
 	t_token_list	*token;
 	t_cmd_list		*cmd_list;
-	t_lvl_lst		*lvl_lst;
+	t_env_lst		*env_lst;
 	char			**envp;
 	int	in;
 	int	out;

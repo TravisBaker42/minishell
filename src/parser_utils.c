@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:07:30 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/19 13:19:06 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/26 12:56:44 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,3 @@ void	ft_free_cmd_list(t_cmd_list **head_cmd)
 		current = next_node;
 	}
 }
-/*
-
-int	ft_amount_pipes(t_token_list **head_token)
-{
-	int				len;
-	t_token_list	*temp_token_list;
-
-	temp_token_list = *head_token; 
-	len = 0;
-	if (temp_token_list->token_type == WORD)
-	{
-		while (temp_token_list->next)
-		{
-			if (temp_token_list->token_type <= LESSER)
-				len++;
-			temp_token_list = temp_token_list->next;
-		}
-		return (len);
-	}
-	// the first argument is not a program such as ls and
-	// the command is incorrected
-	else
-	{
-		printf("error has occurred no program name as first arg\n");
-		return (-1);
-	}
-}
-*/

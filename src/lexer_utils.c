@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:23:42 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/23 15:27:05 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:16:45 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_free_token_list(t_token_list **tokens)
 	}
 	*tokens = NULL;
 }
+/*
 
 /// @brief for testing <---------------------remove
 ///
@@ -107,4 +108,4 @@ void	ft_test_print_list(t_token_list **head_token)
 	}
 	//printf("list finished need to added conditiions for quotes and $args\n");
 	//printf("The linked list needs to be parsed into a use data type for the executer, token type 1 = PIPE and 2 = WORD\n");
-}
+}*/

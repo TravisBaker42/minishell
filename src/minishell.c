@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/24 16:10:24 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:14:29 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/*
 void	ft_test_print_cmd_list(t_data *data)
 {
 	int			i;
@@ -38,14 +39,13 @@ void	ft_test_print_cmd_list(t_data *data)
 	}
 	printf("test complete\n\n\n\n");
 }
-/*
+
 // remove only for testing
-void	ft_test_env(t_lvl_lst *current_shell)
+void	ft_test_env(t_data *data)
 {
 	t_env_lst	*env_lst;
 
-	env_lst = current_shell->env_lst;
-	printf("current shell lvl = %d\n", current_shell->lvl);
+	env_lst = data->env_lst;
 	while (env_lst)
 	{
 		printf("%s\n", env_lst->env_var);
@@ -104,6 +104,8 @@ void	ft_interactive(t_data *data)
 		ft_parser(data);	
 //		ft_test_print_cmd_list(data);//remove fpr testing
 
+		data->env_lst = ft_env_lst(data->envp); //initalise intial shell lvl varaibles
+//		ft_test_env(data); // this test that it works needs to be removed 
 		
 		data->pid = fork();//added to fix prompting
 //		ft_test_print_cmd_list(data);//remove for testing

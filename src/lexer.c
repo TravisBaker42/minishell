@@ -37,8 +37,8 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 			i += ft_pipe(head_token, ft_strdup("|"));
 		else if (input[i] == '>' || input[i] == '<')
 			i += ft_greater_lesser(head_token, input, i);
-//		else if (input[i] == '$')
-//			i += ft_var_token(head_token, input, i);
+		else if (input[i] == '$')
+			i += ft_var_token(head_token, input, i);
 		else if (input[i] == '\"' || input[i] == '\'')
 			i = ft_quotes(head_token, input, i);
 		else
