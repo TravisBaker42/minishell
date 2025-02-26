@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/26 00:09:31 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:47:43 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,7 @@ void	ft_interactive(t_data *data)
 {
 	char *prompt;
 	char *input;
-	int		status;//added for waitpid
 
-	prompt = "\033[1;36mMinishell prompt$ \033[0m";
 	while (42)
 	{
 		input = readline(prompt);
@@ -105,7 +103,6 @@ void	ft_interactive(t_data *data)
 //		ft_test_print_cmd_list(data);//remove fpr testing
 
 		
-		data->pid = fork();//added to fix prompting
 //		ft_test_print_cmd_list(data);//remove for testing
 //		ft_init_env(data); //initalise intial shell lvl varaibles
 //		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
@@ -117,10 +114,6 @@ void	ft_interactive(t_data *data)
 		ft_reset_std(data);			//Resets std_in and std_out.
 		ft_close_fds(data);			//Closes opened fds: fd_in, fd_out, pipe_in, pipe_out.
 		ft_reset_fds(data);			//Resets above values to -1.
-		if (data->pid == 0)//added to fix prompting
-			ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list 
-		else//added to fix prompting
-			waitpid(data->pid, &status, 0);//added to fix prompting
 		ft_free_malloc(data);
 		free (input);
 	}

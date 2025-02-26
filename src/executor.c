@@ -6,12 +6,12 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:52:52 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/25 20:50:24 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:38:49 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>//???
+#include <stdio.h>//Testing purpose.
 #include <stdlib.h>
 #include "../libft/libft.h"
 
@@ -46,26 +46,17 @@ void	ft_executor(t_data *data, t_cmd_list *cmd, char **envp)
 	pip_child = 0;
 	next = ft_next_sep(cmd); //Finds next seperator.
 	prev = ft_prev_sep(cmd); //Finds prev seperator.
-	//redirect						 //
 	if (ft_type_id(prev, TRUNC))
 		ft_redir(data, cmd, TRUNC);
 	else if (ft_type_id(prev, APPEND))
 		ft_redir(data, cmd, APPEND);
 	else if (ft_type_id(prev, INPUT))
 		ft_input(data, cmd);
-	//pipe
 	else if (ft_type_id(prev, PIPE))
 		pip_child = ft_quick_pipe(data);
-	//if next not null and not EOF 
 	if (next && ft_type_id(next, TOKEN_EOF) == 0 && pip_child != 1)
-//	if (next && ft_type_id(next, TOKEN_EOF) == 0 && pip_child == 2 )
 		ft_executor(data, next->next, envp);
-	//if i only use just "ls" it will drop in here send the only process to ft_exe_cmd
-	//calls ft_execve and close the program i think we need a parent to stay alive
-	//i think we need to fork the first cmd regardless of a pipe to keep the program 
-	//run after execution of the cmd	
 	if ((ft_type_id(prev, PIPE) || !prev) && pip_child != 1 && data->no_exec == 0)
-//	if ((ft_type_id(prev, PIPE) || !prev) && pip_child == 2)
 		ft_exec_cmd(data, cmd, envp);
 }
 //	char *cat[] = {"cat", "-e",NULL};
