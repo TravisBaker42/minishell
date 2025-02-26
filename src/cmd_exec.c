@@ -6,7 +6,7 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 00:19:29 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/21 13:16:16 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:48:10 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_execvp(char **cmd, char **envp)
 	if (execve(path, cmd, envp) == -1)
 	{
 		printf("exiting error execvp function");//testing remove
+		//Implement process termination??
 		exit(1);
 	}
 }
