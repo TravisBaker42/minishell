@@ -6,7 +6,7 @@
 /*   By: jeschill <jeschill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:28:54 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/26 00:10:26 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 00:25:26 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_redir(t_data *data, t_cmd_list *node, int token)
 	{
 		//error handling.
 		//Should mimic bash error and output to std_err.
+		ft_putstr_fd("Minishell: ", STDERR_FILENO);
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		data->no_exec = 1;
@@ -61,6 +62,7 @@ void	ft_input(t_data *data, t_cmd_list *node)
 	{
 		//error handling.
 		//Should mimic bash error and output to std_err.
+		ft_putstr_fd("Minishell: ", STDERR_FILENO);
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		data->no_exec = 1;

@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/26 12:47:43 by jeschill         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:53:07 by jeschill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,14 @@ void	ft_non_interactive(int argc, char **argv, t_data *data)
 ///		@brief To recieve commands through prompt from the terminal
 void	ft_interactive(t_data *data)
 {
+	int		i; //testing
 	char *prompt;
 	char *input;
-
-	while (42)
+	int		status;//added for waitpid
+	
+	i = 0;
+	prompt = "\033[1;36mMinishell prompt$ \033[0m";
+	while (i < 6)
 	{
 		input = readline(prompt);
 		add_history(input);//one fucking line for cml history
@@ -101,8 +105,7 @@ void	ft_interactive(t_data *data)
 //		ft_test_print_list(&data->token);
 		ft_parser(data);	
 //		ft_test_print_cmd_list(data);//remove fpr testing
-
-		
+		data->pid = fork();//added to fix prompting
 //		ft_test_print_cmd_list(data);//remove for testing
 //		ft_init_env(data); //initalise intial shell lvl varaibles
 //		ft_test_env(data->lvl_lst); // this test that it works needs to be removed 
@@ -114,8 +117,22 @@ void	ft_interactive(t_data *data)
 		ft_reset_std(data);			//Resets std_in and std_out.
 		ft_close_fds(data);			//Closes opened fds: fd_in, fd_out, pipe_in, pipe_out.
 		ft_reset_fds(data);			//Resets above values to -1.
+		if (data->pid == 0)//added to fix prompting
+		{
+			ft_executor(data, data->cmd_list, data->envp);//need to free data for cmd_list and token_list
+			printf("Child process %i has finished executing!\n", i);
+		}
+		else
+		{
+			waitpid(data->pid, &status, 0);//added to fix prompting
+			ft_reset_std(data);			//Resets std_in and std_out.
+			ft_close_fds(data);			//Closes opened fds: fd_in, fd_out, pipe_in, pipe_out.
+			ft_reset_fds(data);			//Resets above values to -1.
+			printf("This is number %i parent process!\n", i);
+		}
 		ft_free_malloc(data);
 		free (input);
+		i++;
 	}
 }
 
