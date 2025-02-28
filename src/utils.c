@@ -6,7 +6,7 @@
 /*   By: jeschill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:03:24 by jeschill          #+#    #+#             */
-/*   Updated: 2025/02/23 14:39:59 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:30:04 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,12 @@ void	ft_freetabs(char **tabs)
 		free(tabs);
 		tabs = NULL;
 	}
+}
+
+void	ft_free_malloc(t_data *data)
+{
+	if (data->cmd_list)
+		ft_free_cmd_list(&data->cmd_list);
+	if (data->token)
+		ft_free_token_list(&data->token);
 }

@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:55:44 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/26 13:17:15 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:29:57 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct	s_data
 /* ************************************************************************** */
 
 // minishell.c //will move into utils or something
-void			ft_free_malloc(t_data *data);
 void			ft_init_data(t_data *data, char **envp);
 
 // ft_env_lst.c
@@ -154,6 +153,7 @@ int				ft_quotes(t_token_list **head_token, const char *input, int i);
 // utils.c
 void			ft_freetabs(char **tab);
 void			ft_close(int fd);
+void			ft_free_malloc(t_data *data);
 
 //excutor.c
 int				ft_type_id(t_cmd_list *node, t_token token);

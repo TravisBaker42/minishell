@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:48:00 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/26 15:14:29 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:57:37 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_test_env(t_data *data)
 	}
 	printf("test complete\n");
 }
-*/
 void	ft_free_malloc(t_data *data)
 {
 	if (data->cmd_list)
@@ -61,6 +60,7 @@ void	ft_free_malloc(t_data *data)
 	if (data->token)
 		ft_free_token_list(&data->token);
 }
+*/
 
 ///		for testing need to build real function
 void	ft_non_interactive(int argc, char **argv, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: tbaker <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:36:51 by tbaker            #+#    #+#             */
-/*   Updated: 2025/02/23 15:50:04 by tbaker           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:57:35 by tbaker           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 #include <unistd.h>
 #include <stdio.h>
 
+/// @brief creat function that iterates till input[i] == space 
+//   then i need to get the env and get the size then malloc then
+//   copy into malloce dstring and ad to the token_value 
+int	ft_var_token(t_token_list **head_token, const char input, int i)
+{
+
+	return (i);
+}
 
 /// @brief merge test and beginning of lexer
 /// 
@@ -38,7 +46,7 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 		else if (input[i] == '>' || input[i] == '<')
 			i += ft_greater_lesser(head_token, input, i);
 		else if (input[i] == '$')
-			i += ft_var_token(head_token, input, i);
+			i = ft_var_token(head_token, input, i);
 		else if (input[i] == '\"' || input[i] == '\'')
 			i = ft_quotes(head_token, input, i);
 		else
