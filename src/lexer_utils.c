@@ -72,6 +72,8 @@ void	ft_free_token_list(t_token_list **tokens)
 	while (current)
 	{
 		next_node = current->next;
+		//may need to implament strduping from token_value to cmd_list
+		//need to check  
 //		if (current->token_value)
 //		{
 //			free(current->token_value);

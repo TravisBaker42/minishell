@@ -13,16 +13,7 @@
 #include "minishell.h"
 #include "../libft/libft.h"
 #include <unistd.h>
-#include <stdio.h>
-
-/// @brief creat function that iterates till input[i] == space 
-//   then i need to get the env and get the size then malloc then
-//   copy into malloce dstring and ad to the token_value 
-int	ft_var_token(t_token_list **head_token, const char input, int i)
-{
-
-	return (i);
-}
+#include <stdio.h>//remove for testing 
 
 /// @brief merge test and beginning of lexer
 /// 
@@ -32,7 +23,7 @@ int	ft_var_token(t_token_list **head_token, const char input, int i)
 /// @prama head_token: the gegin of the token_list
 ///
 ///	@todo lots of stuff do i show have a return value for errors
-void	ft_tokenizer(t_token_list **head_token, const char *input)
+void	ft_tokenizer(t_data *data, t_token_list **head_token, const char *input)
 {
 	int	i;
 
@@ -46,7 +37,7 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 		else if (input[i] == '>' || input[i] == '<')
 			i += ft_greater_lesser(head_token, input, i);
 		else if (input[i] == '$')
-			i = ft_var_token(head_token, input, i);
+			i = ft_var_token(data, head_token, input, i);
 		else if (input[i] == '\"' || input[i] == '\'')
 			i = ft_quotes(head_token, input, i);
 		else
@@ -60,11 +51,3 @@ void	ft_tokenizer(t_token_list **head_token, const char *input)
 /// @prama input: is the prompt from the terminal
 ///
 /// @todo everything
-t_token_list	*ft_lexer(const char *input)
-{
-	t_token_list	*head_token;
-
-	head_token = NULL;
-	ft_tokenizer(&head_token, input);
-	return (head_token);
-}

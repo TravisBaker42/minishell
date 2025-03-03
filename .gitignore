@@ -2,6 +2,9 @@
 # Prerequisites
 *.d
 
+# Test files
+test.txt
+
 # Object files
 minishell
 *.o

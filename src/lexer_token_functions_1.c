@@ -113,8 +113,8 @@ int	ft_word(t_token_list **head_token, const char *input, int i)
 
 	start = i;
 	while (input[i] != '\0' && input[i] != 32 && input[i] != 9
-		&& input[i] != '|' && input[i] != '\"' && input[i] != '\''
-		&& input[i] != '$')
+		&& input[i] != '|' && input[i] != '>' && input[i] != '<' 
+		&& input[i] != '\"' && input[i] != '\'' && input[i] != '$')
 		i++;
 	token_value = ft_return_word(input, start, i);
 	ft_new_token_node(head_token, WORD, token_value);

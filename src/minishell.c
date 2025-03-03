@@ -99,12 +99,12 @@ void	ft_interactive(t_data *data)
 	{
 		input = readline(prompt);
 		add_history(input);//one fucking line for cml history
-		data->token = ft_lexer(input);
+		data->env_lst = ft_env_lst(data->envp); //update to take *data; initalise intial shell lvl varaibles
+		ft_tokenizer(data, &data->token, input);
 //		ft_test_print_list(&data->token);
 		ft_parser(data);	
 //		ft_test_print_cmd_list(data);//remove fpr testing
 
-		data->env_lst = ft_env_lst(data->envp); //initalise intial shell lvl varaibles
 //		ft_test_env(data); // this test that it works needs to be removed 
 		
 		data->pid = fork();//added to fix prompting
@@ -126,13 +126,15 @@ void	ft_interactive(t_data *data)
 
 /// @breif basic main calls prompt loop 
 ///
-/// @todo lots of stuff need to add libft to the make file 
+/// @todo lots of stuff need to add libft to the make file :w
+///
 /// are command line vars required does it require env path || just use getenv("PATH")
 /// Need to remove printf used for libft testing <------------------------------------------
 
 void	ft_init_data(t_data *data, char **envp)
 {
 	data->envp = envp;
+	data->env_lst = null;
 	data->in = dup(STDIN_FILENO);
 	data->out = dup(STDOUT_FILENO);
 	data->fd_in = -1;
@@ -142,6 +144,9 @@ void	ft_init_data(t_data *data, char **envp)
 	data->no_exec = 0;
 }
 
+//added strcmp for exit, ./minishell, need setup signal for ctrl c and condition for ctrl d handling EOF 
+//on empty 
+//prompt 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data data;
